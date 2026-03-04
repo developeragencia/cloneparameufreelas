@@ -1,11 +1,13 @@
 'use client'
+export const dynamic = 'force-dynamic'
+import { Suspense } from 'react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { Eye, EyeOff, UserPlus } from 'lucide-react'
 
-export default function CadastroPage() {
+function CadastroPageInner() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const defaultTipo = searchParams.get('tipo') || 'cliente'
@@ -177,4 +179,8 @@ export default function CadastroPage() {
       </div>
     </div>
   )
+}
+
+export default function CadastroPage() {
+  return <Suspense fallback={null}><CadastroPageInner /></Suspense>
 }
