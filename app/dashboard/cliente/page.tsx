@@ -22,7 +22,7 @@ export default async function ClientDashboardPage() {
       take: 5,
     }),
     prisma.payment.aggregate({
-      where: { clientId: session!.user.id },
+      where: { payerId: session!.user.id },
       _sum: { amount: true },
       _count: true,
     }),
