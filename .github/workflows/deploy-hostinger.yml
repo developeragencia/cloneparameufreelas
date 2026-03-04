@@ -12,17 +12,21 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ vars.SSH_PORT }}
           script: |
+            set -e
             mkdir -p ${{ vars.APP_DIR }}
             if [ -d "${{ vars.APP_DIR }}/.git" ]; then
               cd ${{ vars.APP_DIR }}
-              git pull origin ${VAR_BRANCH:-${{ vars.BRANCH }}}
+              git fetch origin ${{ vars.BRANCH }}
+              git reset --hard origin/${{ vars.BRANCH }}
             else
               git clone https://github.com/developeragencia/cloneparameufreelas.git ${{ vars.APP_DIR }}
               cd ${{ vars.APP_DIR }}
               git checkout ${{ vars.BRANCH }}
             fi
+            cd ${{ vars.APP_DIR }}
             npm ci --no-audit --no-fund
             npx prisma generate
             npm run build
