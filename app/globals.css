@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 199 100% 47%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 199 100% 47%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#00aeef] hover:bg-[#0099d4] text-white font-semibold px-6 py-2 rounded transition-colors duration-200;
+  }
+  .btn-outline {
+    @apply border-2 border-white text-white hover:bg-white hover:text-gray-800 font-semibold px-6 py-2 rounded transition-colors duration-200;
+  }
+  .section-title {
+    @apply text-3xl font-bold text-gray-800 text-center mb-4;
+  }
+  .container-main {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  .badge-status {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #00aeef; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #0099d4; }
+
+/* Hero overlay */
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+/* Smooth transitions */
+.page-transition {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Star rating */
+.star-filled { color: #fbbf24; }
+.star-empty { color: #d1d5db; }
+
+/* Dashboard sidebar */
+.sidebar-link {
+  @apply flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-[#e8f7fd] hover:text-[#00aeef] rounded-lg transition-colors duration-200 font-medium;
+}
+.sidebar-link.active {
+  @apply bg-[#e8f7fd] text-[#00aeef] border-r-4 border-[#00aeef];
+}
+
+/* Notification badge */
+.notif-badge {
+  @apply absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center;
+}
+
+/* Chat bubble */
+.chat-bubble-sent {
+  @apply bg-[#00aeef] text-white rounded-2xl rounded-tr-sm px-4 py-2 max-w-xs;
+}
+.chat-bubble-received {
+  @apply bg-gray-100 text-gray-800 rounded-2xl rounded-tl-sm px-4 py-2 max-w-xs;
+}
