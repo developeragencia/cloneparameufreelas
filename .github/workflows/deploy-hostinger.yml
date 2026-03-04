@@ -1,0 +1,30 @@
+name: Deploy Hostinger
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            mkdir -p ${{ vars.APP_DIR }}
+            if [ -d "${{ vars.APP_DIR }}/.git" ]; then
+              cd ${{ vars.APP_DIR }}
+              git pull origin ${VAR_BRANCH:-${{ vars.BRANCH }}}
+            else
+              git clone https://github.com/developeragencia/cloneparameufreelas.git ${{ vars.APP_DIR }}
+              cd ${{ vars.APP_DIR }}
+              git checkout ${{ vars.BRANCH }}
+            fi
+            npm ci --no-audit --no-fund
+            npx prisma generate
+            npm run build
+            pkill -f "next start" || true
+            nohup npm start > app.log 2>&1 &
