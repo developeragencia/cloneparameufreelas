@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
           type: 'PAYMENT_RECEIVED',
           title: 'Pagamento iniciado',
           message: `Um pagamento de R$ ${Number(amount).toFixed(2)} foi iniciado pelo cliente.`,
-          link: `/dashboard/freelancer/pagamentos`,
+          data: JSON.stringify({ link: `/dashboard/freelancer/pagamentos` }),
         },
       })
     }

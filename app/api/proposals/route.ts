@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
         type: 'NEW_PROPOSAL',
         title: 'Nova proposta recebida',
         message: `Você recebeu uma nova proposta para o projeto "${project.title}"`,
-        link: `/dashboard/cliente/projetos/${projectId}/propostas`,
+        data: JSON.stringify({ link: `/dashboard/cliente/projetos/${projectId}/propostas` }),
       },
     })
 

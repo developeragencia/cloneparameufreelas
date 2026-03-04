@@ -36,7 +36,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
           type: 'PROPOSAL_ACCEPTED',
           title: 'Proposta aceita!',
           message: `Sua proposta para "${proposal.project.title}" foi aceita!`,
-          link: `/dashboard/freelancer/propostas`,
+          data: JSON.stringify({ link: `/dashboard/freelancer/propostas` }),
         },
       })
     } else if (status === 'REJECTED') {
@@ -46,7 +46,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
           type: 'PROPOSAL_REJECTED',
           title: 'Proposta recusada',
           message: `Sua proposta para "${proposal.project.title}" foi recusada.`,
-          link: `/projetos`,
+          data: JSON.stringify({ link: `/projetos` }),
         },
       })
     }

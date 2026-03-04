@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
         type: 'NEW_MESSAGE',
         title: 'Nova mensagem',
         message: `Você recebeu uma mensagem de ${session.user.name}`,
-        link: `/dashboard/mensagens?with=${session.user.id}`,
+        data: JSON.stringify({ link: `/dashboard/mensagens?with=${session.user.id}` }),
       },
     })
 
