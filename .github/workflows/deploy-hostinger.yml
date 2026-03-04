@@ -32,6 +32,7 @@ jobs:
             fi
             cd "$APP_DIR"
             npm ci --no-audit --no-fund
+            npx prisma db push
             npx prisma generate
             npm run build
             if ! command -v pm2 >/dev/null 2>&1; then
