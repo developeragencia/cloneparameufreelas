@@ -30,5 +30,8 @@ jobs:
             npm ci --no-audit --no-fund
             npx prisma generate
             npm run build
-            pkill -f "next start" || true
-            nohup npm start > app.log 2>&1 &
+            if ! command -v pm2 >/dev/null 2>&1; then
+              npm i -g pm2
+            fi
+            pm2 describe meufreelas >/dev/null 2>&1 && pm2 restart meufreelas --update-env || pm2 start "npm start" --name meufreelas --update-env
+            pm2 save
