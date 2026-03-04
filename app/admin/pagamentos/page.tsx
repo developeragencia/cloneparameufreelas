@@ -5,8 +5,7 @@ export default async function AdminPagamentosPage() {
   const payments = await prisma.payment.findMany({
     include: {
       project: { select: { title: true } },
-      client: { select: { name: true } },
-      freelancer: { select: { name: true } },
+      payer: { select: { name: true } },
     },
     orderBy: { createdAt: 'desc' },
     take: 50,
@@ -43,8 +42,7 @@ export default async function AdminPagamentosPage() {
             <thead className="bg-gray-50">
               <tr className="text-left">
                 <th className="px-4 py-3 text-gray-500 font-medium">Projeto</th>
-                <th className="px-4 py-3 text-gray-500 font-medium">Cliente</th>
-                <th className="px-4 py-3 text-gray-500 font-medium">Freelancer</th>
+                <th className="px-4 py-3 text-gray-500 font-medium">Pagador</th>
                 <th className="px-4 py-3 text-gray-500 font-medium">Valor</th>
                 <th className="px-4 py-3 text-gray-500 font-medium">Taxa</th>
                 <th className="px-4 py-3 text-gray-500 font-medium">Status</th>
@@ -55,8 +53,7 @@ export default async function AdminPagamentosPage() {
               {payments.map((p) => (
                 <tr key={p.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium text-gray-800 max-w-xs truncate">{p.project.title}</td>
-                  <td className="px-4 py-3 text-gray-600">{p.client.name}</td>
-                  <td className="px-4 py-3 text-gray-600">{p.freelancer.name}</td>
+                  <td className="px-4 py-3 text-gray-600">{p.payer.name}</td>
                   <td className="px-4 py-3 font-semibold text-gray-800">{formatCurrency(Number(p.amount))}</td>
                   <td className="px-4 py-3 text-green-600">{formatCurrency(Number(p.platformFee))}</td>
                   <td className="px-4 py-3">
