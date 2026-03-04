@@ -37,10 +37,25 @@ export default async function AdminDisputasPage() {
                   <td className="px-4 py-3 text-gray-600">{d.openedBy.name}</td>
                   <td className="px-4 py-3 text-gray-500 max-w-xs truncate">{d.reason}</td>
                   <td className="px-4 py-3">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                      d.status === 'OPEN' ? 'bg-yellow-100 text-yellow-700' :
-                      d.status === 'RESOLVED' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
-                    }`}>{d.status === 'OPEN' ? 'Aberta' : d.status === 'RESOLVED' ? 'Resolvida' : 'Fechada'}</span>
+                    <span
+                      className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                        d.status === 'OPEN'
+                          ? 'bg-yellow-100 text-yellow-700'
+                          : d.status === 'UNDER_REVIEW'
+                          ? 'bg-blue-100 text-blue-700'
+                          : d.status === 'RESOLVED_CLIENT' || d.status === 'RESOLVED_FREELANCER'
+                          ? 'bg-green-100 text-green-700'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}
+                    >
+                      {d.status === 'OPEN'
+                        ? 'Aberta'
+                        : d.status === 'UNDER_REVIEW'
+                        ? 'Em análise'
+                        : d.status === 'RESOLVED_CLIENT' || d.status === 'RESOLVED_FREELANCER'
+                        ? 'Resolvida'
+                        : 'Fechada'}
+                    </span>
                   </td>
                   <td className="px-4 py-3 text-gray-400">{formatDate(d.createdAt)}</td>
                   <td className="px-4 py-3">

@@ -10,10 +10,12 @@ export default function AdminDisputeActions({ disputeId }: { disputeId: string }
   const resolve = async (resolution: string) => {
     setLoading(true)
     try {
+      const status =
+        resolution === 'FAVOR_CLIENT' ? 'RESOLVED_CLIENT' : 'RESOLVED_FREELANCER'
       await fetch(`/api/admin/disputes/${disputeId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: 'RESOLVED', resolution }),
+        body: JSON.stringify({ status, resolution }),
       })
       toast.success('Disputa resolvida')
       router.refresh()

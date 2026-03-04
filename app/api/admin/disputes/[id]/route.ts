@@ -10,7 +10,11 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   const { status, resolution } = await req.json()
   const dispute = await prisma.dispute.update({
     where: { id: params.id },
-    data: { status, resolution, resolvedAt: status === 'RESOLVED' ? new Date() : undefined },
+    data: {
+      status,
+      resolution,
+      resolvedAt: status === 'RESOLVED_CLIENT' || status === 'RESOLVED_FREELANCER' || status === 'CLOSED' ? new Date() : undefined,
+    },
   })
   return NextResponse.json(dispute)
 }
