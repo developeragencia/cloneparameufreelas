@@ -10,21 +10,17 @@ export default async function FreelancerProfilePage({ params }: Props) {
   const user = await prisma.user.findFirst({
     where: { OR: [{ id: params.slug }, { name: { contains: params.slug.replace(/-/g, ' ') } }], role: 'FREELANCER', isActive: true },
     include: {
-      freelancerProfile: true,
-      reviews: { include: { reviewer: { select: { name: true } } }, orderBy: { createdAt: 'desc' }, take: 5 },
+      freelancerProfile: { include: { skills: { include: { skill: true } }, portfolio: true } },
+      reviewsReceived: { include: { giver: { select: { name: true } } }, orderBy: { createdAt: 'desc' }, take: 5 },
       _count: { select: { proposals: true } },
     },
   })
 
   if (!user) notFound()
 
-  const portfolio: any[] = (() => {
-    try { return JSON.parse(user.freelancerProfile?.portfolio ?? '[]') } catch { return [] }
-  })()
+  const portfolio: any[] = user.freelancerProfile?.portfolio ?? []
 
-  const skills: string[] = (() => {
-    try { return JSON.parse(user.freelancerProfile?.skills ?? '[]') } catch { return [] }
-  })()
+  const skills: string[] = (user.freelancerProfile?.skills ?? []).map((s: any) => s.skill?.name).filter(Boolean)
 
   return (
     <div className="min-h-screen bg-gray-50 py-10">
@@ -108,17 +104,19 @@ export default async function FreelancerProfilePage({ params }: Props) {
               </div>
             )}
 
-            {user.freelancerProfile?.experience && (
+            {typeof user.freelancerProfile?.experienceYears === 'number' && user.freelancerProfile.experienceYears > 0 && (
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h2 className="font-bold text-gray-800 mb-3">Experiência</h2>
-                <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{user.freelancerProfile.experience}</p>
+                <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                  {user.freelancerProfile.experienceYears} ano(s) de experiência
+                </p>
               </div>
             )}
 
-            {user.freelancerProfile?.education && (
+            {user.freelancerProfile?.educationLevel && (
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h2 className="font-bold text-gray-800 mb-3">Formação</h2>
-                <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{user.freelancerProfile.education}</p>
+                <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{user.freelancerProfile.educationLevel}</p>
               </div>
             )}
 
@@ -146,18 +144,18 @@ export default async function FreelancerProfilePage({ params }: Props) {
               </div>
             )}
 
-            {user.reviews.length > 0 && (
+            {user.reviewsReceived.length > 0 && (
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h2 className="font-bold text-gray-800 mb-4">Avaliações</h2>
                 <div className="space-y-4">
-                  {user.reviews.map((review: any) => (
+                  {user.reviewsReceived.map((review: any) => (
                     <div key={review.id} className="border-b last:border-0 pb-4 last:pb-0">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-8 h-8 rounded-full bg-[#00aeef] flex items-center justify-center text-white text-xs font-bold">
-                          {review.reviewer.name.charAt(0).toUpperCase()}
+                          {review.giver.name.charAt(0).toUpperCase()}
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-gray-800">{review.reviewer.name}</p>
+                          <p className="text-sm font-semibold text-gray-800">{review.giver.name}</p>
                           <div className="flex">
                             {[1,2,3,4,5].map(i => (
                               <Star key={i} className={`w-3 h-3 ${i <= review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-200 fill-gray-200'}`} />
