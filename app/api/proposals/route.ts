@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     await prisma.notification.create({
       data: {
         userId: project.clientId,
-        type: 'NEW_PROPOSAL',
+        type: 'PROPOSAL_RECEIVED',
         title: 'Nova proposta recebida',
         message: `Você recebeu uma nova proposta para o projeto "${project.title}"`,
         data: JSON.stringify({ link: `/dashboard/cliente/projetos/${projectId}/propostas` }),

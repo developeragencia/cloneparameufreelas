@@ -9,24 +9,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: appleboy/ssh-action@v1.0.3
+        env:
+          APP_DIR: ${{ vars.APP_DIR }}
+          BRANCH: ${{ vars.BRANCH }}
+          SSH_PORT: ${{ vars.SSH_PORT }}
+          APP_DIR_SECRET: ${{ secrets.APP_DIR }}
+          BRANCH_SECRET: ${{ secrets.BRANCH }}
+          SSH_PORT_SECRET: ${{ secrets.SSH_PORT }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ vars.SSH_PORT }}
+          port: ${{ secrets.SSH_PORT }}
+          envs: APP_DIR,BRANCH,SSH_PORT,APP_DIR_SECRET,BRANCH_SECRET,SSH_PORT_SECRET
           script: |
             set -e
-            mkdir -p ${{ vars.APP_DIR }}
-            if [ -d "${{ vars.APP_DIR }}/.git" ]; then
-              cd ${{ vars.APP_DIR }}
-              git fetch origin ${{ vars.BRANCH }}
-              git reset --hard origin/${{ vars.BRANCH }}
+            APP_DIR="${APP_DIR:-$APP_DIR_SECRET}"
+            BRANCH="${BRANCH:-$BRANCH_SECRET}"
+            SSH_PORT="${SSH_PORT:-$SSH_PORT_SECRET}"
+            mkdir -p "$APP_DIR"
+            if [ -d "$APP_DIR/.git" ]; then
+              cd "$APP_DIR"
+              git fetch origin "$BRANCH"
+              git reset --hard "origin/$BRANCH"
             else
-              git clone https://github.com/developeragencia/cloneparameufreelas.git ${{ vars.APP_DIR }}
-              cd ${{ vars.APP_DIR }}
-              git checkout ${{ vars.BRANCH }}
+              git clone https://github.com/developeragencia/cloneparameufreelas.git "$APP_DIR"
+              cd "$APP_DIR"
+              git checkout "$BRANCH"
             fi
-            cd ${{ vars.APP_DIR }}
+            cd "$APP_DIR"
             npm ci --no-audit --no-fund
             npx prisma generate
             npm run build
