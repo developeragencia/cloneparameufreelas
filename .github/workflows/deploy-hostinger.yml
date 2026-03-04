@@ -8,25 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: appleboy/ssh-action@v1.0.3
-        env:
-          APP_DIR: ${{ vars.APP_DIR }}
-          BRANCH: ${{ vars.BRANCH }}
-          SSH_PORT: ${{ vars.SSH_PORT }}
-          APP_DIR_SECRET: ${{ secrets.APP_DIR }}
-          BRANCH_SECRET: ${{ secrets.BRANCH }}
-          SSH_PORT_SECRET: ${{ secrets.SSH_PORT }}
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          envs: APP_DIR,BRANCH,SSH_PORT,APP_DIR_SECRET,BRANCH_SECRET,SSH_PORT_SECRET
+          envs: APP_DIR,BRANCH,APP_DIR_SECRET,BRANCH_SECRET
           script: |
             set -e
             APP_DIR="${APP_DIR:-$APP_DIR_SECRET}"
             BRANCH="${BRANCH:-$BRANCH_SECRET}"
-            SSH_PORT="${SSH_PORT:-$SSH_PORT_SECRET}"
             mkdir -p "$APP_DIR"
             if [ -d "$APP_DIR/.git" ]; then
               cd "$APP_DIR"
@@ -46,3 +39,8 @@ jobs:
             fi
             pm2 describe meufreelas >/dev/null 2>&1 && pm2 restart meufreelas --update-env || pm2 start "npm start" --name meufreelas --update-env
             pm2 save
+        env:
+          APP_DIR: ${{ vars.APP_DIR }}
+          BRANCH: ${{ vars.BRANCH }}
+          APP_DIR_SECRET: ${{ secrets.APP_DIR }}
+          BRANCH_SECRET: ${{ secrets.BRANCH }}
