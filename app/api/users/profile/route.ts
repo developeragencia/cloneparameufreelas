@@ -46,12 +46,13 @@ export async function PATCH(req: NextRequest) {
       await prisma.freelancerProfile.updateMany({
         where: { userId: session.user.id },
         data: {
-          headline: freelancerProfile.headline,
-          hourlyRate: freelancerProfile.hourlyRate ? Number(freelancerProfile.hourlyRate) : undefined,
-          availability: freelancerProfile.availability,
-          portfolio: freelancerProfile.portfolio,
-          experience: freelancerProfile.experience,
-          education: freelancerProfile.education,
+          headline: freelancerProfile.headline ?? undefined,
+          hourlyRate: freelancerProfile.hourlyRate !== undefined ? Number(freelancerProfile.hourlyRate) : undefined,
+          availability: freelancerProfile.availability ?? undefined,
+          experienceYears: freelancerProfile.experienceYears !== undefined ? Number(freelancerProfile.experienceYears) : undefined,
+          educationLevel: freelancerProfile.educationLevel ?? undefined,
+          languages: freelancerProfile.languages ?? undefined,
+          slug: freelancerProfile.slug ?? undefined,
         },
       })
     }
@@ -60,9 +61,10 @@ export async function PATCH(req: NextRequest) {
       await prisma.clientProfile.updateMany({
         where: { userId: session.user.id },
         data: {
-          companyName: clientProfile.companyName,
-          website: clientProfile.website,
-          companySize: clientProfile.companySize,
+          companyName: clientProfile.companyName ?? undefined,
+          companySite: clientProfile.website ?? clientProfile.companySite ?? undefined,
+          industry: clientProfile.industry ?? undefined,
+          companySize: clientProfile.companySize ?? undefined,
         },
       })
     }
