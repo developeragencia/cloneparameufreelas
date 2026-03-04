@@ -16,7 +16,7 @@ export default async function FreelancerDashboardPage() {
       take: 5,
     }),
     prisma.payment.aggregate({
-      where: { freelancerId: session!.user.id, status: 'RELEASED' },
+      where: { status: 'RELEASED', project: { selectedFreelancerId: session!.user.id } },
       _sum: { freelancerAmount: true },
       _count: true,
     }),

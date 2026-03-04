@@ -28,7 +28,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     if (status === 'ACCEPTED') {
       await prisma.project.update({
         where: { id: proposal.projectId },
-        data: { status: 'IN_PROGRESS', assignedFreelancerId: proposal.freelancerId },
+        data: { status: 'IN_PROGRESS', selectedFreelancerId: proposal.freelancerId },
       })
       await prisma.notification.create({
         data: {

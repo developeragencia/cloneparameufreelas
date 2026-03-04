@@ -9,15 +9,14 @@ export async function GET(req: NextRequest) {
     if (!session) return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
 
     const where: any = {}
-    if (session.user.role === 'CLIENT') where.clientId = session.user.id
-    if (session.user.role === 'FREELANCER') where.freelancerId = session.user.id
+    if (session.user.role === 'CLIENT') where.payerId = session.user.id
+    if (session.user.role === 'FREELANCER') where.project = { selectedFreelancerId: session.user.id }
 
     const payments = await prisma.payment.findMany({
       where,
       include: {
-        project: { select: { id: true, title: true, slug: true } },
-        client: { select: { id: true, name: true } },
-        freelancer: { select: { id: true, name: true } },
+        project: { select: { id: true, title: true, slug: true, selectedFreelancerId: true } },
+        payer: { select: { id: true, name: true } },
       },
       orderBy: { createdAt: 'desc' },
     })
@@ -35,9 +34,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
     }
 
-    const { projectId, freelancerId, amount, description } = await req.json()
+    const { projectId, amount, description } = await req.json()
 
-    if (!projectId || !freelancerId || !amount) {
+    if (!projectId || !amount) {
       return NextResponse.json({ error: 'Campos obrigatórios ausentes' }, { status: 400 })
     }
 
@@ -48,26 +47,27 @@ export async function POST(req: NextRequest) {
     const payment = await prisma.payment.create({
       data: {
         projectId,
-        clientId: session.user.id,
-        freelancerId,
+        payerId: session.user.id,
         amount: Number(amount),
         platformFee,
         freelancerAmount,
         description: description || '',
         status: 'PENDING',
-        method: 'STRIPE',
       },
     })
 
-    await prisma.notification.create({
-      data: {
-        userId: freelancerId,
-        type: 'PAYMENT_RECEIVED',
-        title: 'Pagamento iniciado',
-        message: `Um pagamento de R$ ${Number(amount).toFixed(2)} foi iniciado pelo cliente.`,
-        link: `/dashboard/freelancer/pagamentos`,
-      },
-    })
+    const proj = await prisma.project.findUnique({ where: { id: projectId }, select: { selectedFreelancerId: true, title: true } })
+    if (proj?.selectedFreelancerId) {
+      await prisma.notification.create({
+        data: {
+          userId: proj.selectedFreelancerId,
+          type: 'PAYMENT_RECEIVED',
+          title: 'Pagamento iniciado',
+          message: `Um pagamento de R$ ${Number(amount).toFixed(2)} foi iniciado pelo cliente.`,
+          link: `/dashboard/freelancer/pagamentos`,
+        },
+      })
+    }
 
     return NextResponse.json(payment, { status: 201 })
   } catch (err) {

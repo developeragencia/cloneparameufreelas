@@ -49,7 +49,7 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
     }
 
-    const { userId, isActive, isVerified, isFeatured } = await req.json()
+    const { userId, isActive, isVerified } = await req.json()
     if (!userId) return NextResponse.json({ error: 'userId obrigatório' }, { status: 400 })
 
     const user = await prisma.user.update({
@@ -57,7 +57,6 @@ export async function PATCH(req: NextRequest) {
       data: {
         isActive: isActive !== undefined ? isActive : undefined,
         isVerified: isVerified !== undefined ? isVerified : undefined,
-        isFeatured: isFeatured !== undefined ? isFeatured : undefined,
       },
     })
 

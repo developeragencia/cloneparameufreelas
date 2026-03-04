@@ -7,10 +7,9 @@ import { CreditCard, CheckCircle, Clock, XCircle } from 'lucide-react'
 export default async function ClientPagamentosPage() {
   const session = await getServerSession(authOptions)
   const payments = await prisma.payment.findMany({
-    where: { clientId: session!.user.id },
+    where: { payerId: session!.user.id },
     include: {
-      project: { select: { title: true, slug: true } },
-      freelancer: { select: { name: true } },
+      project: { select: { title: true, slug: true, selectedFreelancerId: true } },
     },
     orderBy: { createdAt: 'desc' },
   })
@@ -63,7 +62,7 @@ export default async function ClientPagamentosPage() {
                   {statusIcon(payment.status)}
                   <div>
                     <p className="text-sm font-medium text-gray-800">{payment.project.title}</p>
-                    <p className="text-xs text-gray-400">Para: {payment.freelancer.name} · {formatDate(payment.createdAt)}</p>
+                    <p className="text-xs text-gray-400">Para: {payment.project.selectedFreelancerId ? 'Freelancer selecionado' : '—'} · {formatDate(payment.createdAt)}</p>
                   </div>
                 </div>
                 <div className="text-right">
