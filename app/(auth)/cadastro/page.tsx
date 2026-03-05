@@ -50,17 +50,17 @@ function CadastroPageInner() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-lg w-full">
-        <div className="text-center mb-8">
+        <div className="text-center mb-10">
           <Logo size="xl" variant="dark" />
-          <h2 className="mt-6 text-3xl font-bold text-gray-800">Criar sua conta</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="mt-6 text-3xl font-bold text-gray-900">Criar sua conta</h2>
+          <p className="mt-3 text-sm text-gray-600">
             Já tem conta?{' '}
             <Link href="/login" className="text-[#00aeef] font-semibold hover:underline">Faça login</Link>
           </p>
         </div>
 
         {/* Tipo de conta */}
-        <div className="flex bg-gray-200 rounded-lg p-1 mb-6 shadow-sm">
+        <div className="flex bg-gray-200 rounded-lg p-1 mb-8 shadow-sm">
           <button
             type="button"
             onClick={() => setTipo('cliente')}
@@ -77,8 +77,8 @@ function CadastroPageInner() {
           </button>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="bg-white rounded-lg shadow-xl p-10">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 {tipo === 'freelancer' ? 'Nome completo' : 'Nome / Empresa'}
@@ -89,7 +89,7 @@ function CadastroPageInner() {
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder={tipo === 'freelancer' ? 'Seu nome completo' : 'Seu nome ou empresa'}
                 required
-                className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00aeef] transition-all"
+                className="w-full border border-gray-300 rounded-md px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#00aeef]"
               />
             </div>
             <div>
@@ -100,7 +100,7 @@ function CadastroPageInner() {
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="seu@email.com"
                 required
-                className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00aeef] transition-all"
+                className="w-full border border-gray-300 rounded-md px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#00aeef]"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -111,7 +111,7 @@ function CadastroPageInner() {
                   value={form.city}
                   onChange={(e) => setForm({ ...form, city: e.target.value })}
                   placeholder="Sua cidade"
-                  className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00aeef] transition-all"
+                  className="w-full border border-gray-300 rounded-md px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#00aeef]"
                 />
               </div>
               <div>
@@ -151,21 +151,21 @@ function CadastroPageInner() {
                 onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
                 placeholder="Repita sua senha"
                 required
-                className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00aeef] transition-all"
+                className="w-full border border-gray-300 rounded-md px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#00aeef]"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#00aeef] hover:bg-[#0099d4] text-white font-bold py-3.5 rounded-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 mt-2 shadow-md hover:shadow-lg"
+              className="w-full bg-[#00aeef] hover:bg-[#0099d4] text-white font-bold py-4 rounded-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 shadow-md hover:shadow-lg text-base"
             >
               <UserPlus className="w-5 h-5" />
               {loading ? 'Criando conta...' : 'Criar minha conta'}
             </button>
           </form>
 
-          <p className="text-center text-xs text-gray-500 mt-6">
+          <p className="text-center text-xs text-gray-500 mt-8">
             Ao criar uma conta, você concorda com nossos{' '}
             <Link href="/termos" className="text-[#00aeef] font-medium hover:underline">Termos de Uso</Link>{' '}
             e{' '}

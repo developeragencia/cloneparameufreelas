@@ -1,30 +1,16 @@
 'use client'
-import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { Search } from 'lucide-react'
-
-const heroCategories = ['design', 'programação', 'marketing', 'redação', 'SEO', 'vídeo']
 
 export default function HeroSection() {
-  const [currentCategory, setCurrentCategory] = useState(0)
-  const [search, setSearch] = useState('')
-  const router = useRouter()
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (search.trim()) router.push(`/freelancers?q=${encodeURIComponent(search)}`)
-  }
-
   return (
     <section
       className="relative min-h-[520px] flex flex-col items-center justify-center text-white"
       style={{
-        background: 'linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=80) center/cover no-repeat',
+        background: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=80) center/cover no-repeat',
       }}
     >
-      <div className="container-main text-center py-20 animate-fade-in">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 text-center py-20">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
           Encontre o melhor profissional freelancer
           <br />
           para escrever o seu conteúdo.

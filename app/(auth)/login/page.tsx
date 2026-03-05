@@ -43,16 +43,16 @@ function LoginPageInner() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full">
-        <div className="text-center mb-8">
+        <div className="text-center mb-10">
           <Logo size="xl" variant="dark" />
-          <h2 className="mt-6 text-3xl font-bold text-gray-800">Entrar na sua conta</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="mt-6 text-3xl font-bold text-gray-900">Entrar na sua conta</h2>
+          <p className="mt-3 text-sm text-gray-600">
             Não tem conta?{' '}
             <Link href="/cadastro" className="text-[#00aeef] font-semibold hover:underline">Cadastre-se grátis</Link>
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-white rounded-lg shadow-xl p-10">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
@@ -62,7 +62,7 @@ function LoginPageInner() {
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="seu@email.com"
                 required
-                className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00aeef] focus:border-transparent transition-all"
+                className="w-full border border-gray-300 rounded-md px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#00aeef] focus:border-transparent"
               />
             </div>
             <div>
@@ -74,10 +74,10 @@ function LoginPageInner() {
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   placeholder="Sua senha"
                   required
-                  className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00aeef] focus:border-transparent pr-10 transition-all"
+                  className="w-full border border-gray-300 rounded-md px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#00aeef] focus:border-transparent pr-10"
                 />
                 <button type="button" onClick={() => setShow(!show)} className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-600">
-                  {show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {show ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
               <div className="text-right mt-2">
@@ -88,7 +88,7 @@ function LoginPageInner() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#00aeef] hover:bg-[#0099d4] text-white font-bold py-3.5 rounded-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 shadow-md hover:shadow-lg"
+              className="w-full bg-[#00aeef] hover:bg-[#0099d4] text-white font-bold py-4 rounded-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 shadow-md hover:shadow-lg text-base"
             >
               <LogIn className="w-5 h-5" />
               {loading ? 'Entrando...' : 'Entrar'}
@@ -103,7 +103,7 @@ function LoginPageInner() {
           </div>
         </div>
 
-        <p className="text-center mt-4 text-sm text-gray-500">
+        <p className="text-center mt-6 text-sm text-gray-500">
           <strong>Demo:</strong> cliente@demo.com.br / Cliente@123
         </p>
       </div>

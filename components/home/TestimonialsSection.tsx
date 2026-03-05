@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const testimonials = [
   {
@@ -15,39 +14,34 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const [page, setPage] = useState(0)
-  const perPage = 2
-  const totalPages = Math.ceil(testimonials.length / perPage)
-  const visible = testimonials.slice(page * perPage, page * perPage + perPage)
 
   return (
-    <section className="py-16 bg-[#00aeef]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-white text-center mb-10">
+    <section className="py-20 bg-[#00aeef]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
           O que nossos clientes estão dizendo
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {visible.map((t, i) => (
-            <div key={i} className="bg-white bg-opacity-20 rounded-lg p-6 text-white">
-              <p className="text-sm leading-relaxed mb-4 italic">{t.content}</p>
-              <div className="bg-[#0099d4] rounded px-3 py-1 inline-block">
-                <span className="text-white font-semibold text-sm">- {t.name}</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          {testimonials.map((t, i) => (
+            <div key={i} className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-8 text-white">
+              <p className="text-base leading-relaxed mb-6 italic">{t.content}</p>
+              <div className="bg-[#0099d4] rounded-md px-4 py-2 inline-block">
+                <span className="text-white font-semibold">- {t.name}</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Pagination dots */}
-        <div className="flex items-center justify-center gap-3">
-          <button onClick={() => setPage((p) => Math.max(0, p - 1))} className="text-white hover:text-gray-200 disabled:opacity-40" disabled={page === 0}>
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <button key={i} onClick={() => setPage(i)} className={`w-3 h-3 rounded-full transition-colors ${i === page ? 'bg-white' : 'bg-white bg-opacity-50'}`} />
+        <div className="flex items-center justify-center gap-2">
+          {testimonials.map((_, i) => (
+            <button 
+              key={i} 
+              onClick={() => setPage(i)} 
+              className={`w-3 h-3 rounded-full transition-all ${i === page ? 'bg-white w-8' : 'bg-white bg-opacity-50'}`}
+              aria-label={`Ver depoimento ${i + 1}`}
+            />
           ))}
-          <button onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))} className="text-white hover:text-gray-200 disabled:opacity-40" disabled={page === totalPages - 1}>
-            <ChevronRight className="w-5 h-5" />
-          </button>
         </div>
       </div>
     </section>
