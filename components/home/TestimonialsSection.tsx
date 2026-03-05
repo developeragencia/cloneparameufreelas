@@ -16,18 +16,18 @@ export default function TestimonialsSection() {
   const [page, setPage] = useState(0)
 
   return (
-    <section className="py-20 bg-[#00aeef]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+    <section className="py-10 md:py-16 bg-[#00aeef]">
+      <div className="max-w-5xl mx-auto px-4">
+        <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-white text-center mb-6 md:mb-10">
           O que nossos clientes estão dizendo
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {testimonials.map((t, i) => (
-            <div key={i} className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-8 text-white">
-              <p className="text-base leading-relaxed mb-6 italic">{t.content}</p>
-              <div className="bg-[#0099d4] rounded-md px-4 py-2 inline-block">
-                <span className="text-white font-semibold">- {t.name}</span>
+            <div key={i} className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-5 md:p-7 text-white">
+              <p className="text-sm md:text-base leading-relaxed mb-4 italic">{t.content}</p>
+              <div className="bg-[#0099d4] rounded-md px-3 py-1.5 inline-block">
+                <span className="text-white font-semibold text-sm">- {t.name}</span>
               </div>
             </div>
           ))}

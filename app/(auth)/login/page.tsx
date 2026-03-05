@@ -43,7 +43,7 @@ function LoginPageInner() {
 
   const handleSocialLogin = async (provider: string) => {
     setSocialLoading(provider)
-    await signIn(provider, { callbackUrl })
+    await signIn(provider, { callbackUrl: '/dashboard' })
   }
 
   return (

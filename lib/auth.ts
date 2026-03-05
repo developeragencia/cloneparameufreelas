@@ -39,10 +39,28 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({ user, account }) {
+      if (account?.provider === 'google' || account?.provider === 'github') {
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: user.email! },
+            include: { clientProfile: true, freelancerProfile: true },
+          })
+          if (dbUser && !dbUser.clientProfile && !dbUser.freelancerProfile) {
+            await prisma.clientProfile.create({ data: { userId: dbUser.id } })
+          }
+        } catch {}
+      }
+      return true
+    },
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id
         token.role = (user as any).role
+      }
+      if (!token.role && token.id) {
+        const dbUser = await prisma.user.findUnique({ where: { id: token.id as string } })
+        if (dbUser) token.role = dbUser.role
       }
       return token
     },
