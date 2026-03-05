@@ -34,7 +34,7 @@ export default function Header() {
       {/* Top bar — charcoal dark */}
       <div style={{ background: '#3C3C3C' }}>
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-[58px] gap-4">
+          <div className="flex items-center justify-between h-[52px] gap-4">
 
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
@@ -46,15 +46,15 @@ export default function Header() {
               <div className="flex w-full overflow-hidden rounded-sm">
                 <div className="relative">
                   <button type="button" onClick={() => setSearchDropdown(!searchDropdown)}
-                    className="flex items-center gap-1 px-4 py-2.5 text-sm text-white font-semibold whitespace-nowrap h-full bg-[#00AEEF] hover:bg-[#0099d4] transition-colors">
-                    {searchType} <ChevronDown className="w-3.5 h-3.5" />
+                    className="flex items-center gap-1 px-3 py-2 text-xs text-white font-semibold whitespace-nowrap h-full bg-[#00AEEF] hover:bg-[#0099d4] transition-colors">
+                    {searchType} <ChevronDown className="w-3 h-3" />
                   </button>
                   {searchDropdown && (
                     <div className="absolute top-full left-0 mt-1 bg-white rounded shadow-lg border border-gray-200 z-50 min-w-[150px]">
                       {['Freelancers', 'Projetos'].map((opt) => (
                         <button key={opt} type="button"
                           onClick={() => { setSearchType(opt); setSearchDropdown(false) }}
-                          className="block w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium">
+                          className="block w-full text-left px-3 py-2 text-xs text-gray-700 hover:bg-gray-50 font-medium">
                           {opt}
                         </button>
                       ))}
@@ -64,10 +64,10 @@ export default function Header() {
                 <input type="text" value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={`Buscar ${searchType.toLowerCase()}`}
-                  className="flex-1 px-4 py-2.5 text-sm outline-none text-gray-800 bg-white"
+                  className="flex-1 px-3 py-2 text-xs outline-none text-gray-800 bg-white"
                 />
-                <button type="submit" className="px-4 py-2.5 bg-white hover:bg-gray-100 transition-colors border-l border-gray-200">
-                  <Search className="w-4 h-4 text-gray-500" />
+                <button type="submit" className="px-3 py-2 bg-white hover:bg-gray-100 transition-colors border-l border-gray-200">
+                  <Search className="w-3.5 h-3.5 text-gray-500" />
                 </button>
               </div>
             </form>
@@ -77,31 +77,31 @@ export default function Header() {
               {session ? (
                 <div className="relative">
                   <button onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="flex items-center gap-2 py-1.5 px-3 rounded hover:bg-white/10 transition-colors text-white text-sm font-medium">
-                    <div className="w-7 h-7 rounded-full bg-[#00AEEF] flex items-center justify-center text-white text-xs font-bold">
+                    className="flex items-center gap-1.5 py-1 px-2 rounded hover:bg-white/10 transition-colors text-white text-xs font-medium">
+                    <div className="w-6 h-6 rounded-full bg-[#00AEEF] flex items-center justify-center text-white text-[10px] font-bold">
                       {session.user.name?.charAt(0).toUpperCase()}
                     </div>
-                    <span className="max-w-[80px] truncate">{session.user.name?.split(' ')[0]}</span>
-                    <ChevronDown className="w-3.5 h-3.5" />
+                    <span className="max-w-[70px] truncate text-xs">{session.user.name?.split(' ')[0]}</span>
+                    <ChevronDown className="w-3 h-3" />
                   </button>
                   {userMenuOpen && (
-                    <div className="absolute right-0 mt-1.5 w-52 bg-white rounded shadow-xl border border-gray-200 py-1 z-50">
-                      <div className="px-4 py-3 border-b border-gray-100">
-                        <p className="font-semibold text-sm text-gray-900">{session.user.name}</p>
-                        <p className="text-xs text-gray-500">{session.user.email}</p>
+                    <div className="absolute right-0 mt-1.5 w-48 bg-white rounded shadow-xl border border-gray-200 py-1 z-50">
+                      <div className="px-3 py-2 border-b border-gray-100">
+                        <p className="font-semibold text-xs text-gray-900">{session.user.name}</p>
+                        <p className="text-[10px] text-gray-500">{session.user.email}</p>
                       </div>
-                      <Link href={getDashboardPath()} onClick={() => setUserMenuOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
-                        <LayoutDashboard className="w-4 h-4 text-gray-400" /> Meu Painel
+                      <Link href={getDashboardPath()} onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-3 py-2 text-xs text-gray-700 hover:bg-gray-50">
+                        <LayoutDashboard className="w-3.5 h-3.5 text-gray-400" /> Meu Painel
                       </Link>
-                      <Link href={getDashboardPath() + '/perfil'} onClick={() => setUserMenuOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
-                        <User className="w-4 h-4 text-gray-400" /> Meu Perfil
+                      <Link href={getDashboardPath() + '/perfil'} onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-3 py-2 text-xs text-gray-700 hover:bg-gray-50">
+                        <User className="w-3.5 h-3.5 text-gray-400" /> Meu Perfil
                       </Link>
-                      <Link href={getDashboardPath() + '/configuracoes'} onClick={() => setUserMenuOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
-                        <Settings className="w-4 h-4 text-gray-400" /> Configurações
+                      <Link href={getDashboardPath() + '/configuracoes'} onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-3 py-2 text-xs text-gray-700 hover:bg-gray-50">
+                        <Settings className="w-3.5 h-3.5 text-gray-400" /> Configurações
                       </Link>
                       <div className="border-t border-gray-100 mt-1 pt-1">
-                        <button onClick={() => signOut({ callbackUrl: '/' })} className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 w-full">
-                          <LogOut className="w-4 h-4" /> Sair
+                        <button onClick={() => signOut({ callbackUrl: '/' })} className="flex items-center gap-2 px-3 py-2 text-xs text-red-600 hover:bg-red-50 w-full">
+                          <LogOut className="w-3.5 h-3.5" /> Sair
                         </button>
                       </div>
                     </div>
@@ -109,10 +109,10 @@ export default function Header() {
                 </div>
               ) : (
                 <>
-                  <Link href="/login" className="text-sm text-white font-medium hover:text-[#00AEEF] transition-colors px-2 py-1">Login</Link>
-                  <Link href="/cadastro" className="text-sm text-white font-medium hover:text-[#00AEEF] transition-colors px-2 py-1">Cadastre-se</Link>
+                  <Link href="/login" className="text-xs text-white font-medium hover:text-[#00AEEF] transition-colors px-2 py-1">Login</Link>
+                  <Link href="/cadastro" className="text-xs text-white font-medium hover:text-[#00AEEF] transition-colors px-2 py-1">Cadastre-se</Link>
                   <Link href="/publicar-projeto"
-                    className="ml-1 px-4 py-2 text-sm font-semibold bg-[#00AEEF] hover:bg-[#0099d4] text-white rounded-sm transition-colors">
+                    className="ml-1 px-4 py-1.5 text-xs font-semibold bg-[#00AEEF] hover:bg-[#0099d4] text-white rounded transition-colors">
                     Publicar projeto
                   </Link>
                 </>
@@ -130,10 +130,10 @@ export default function Header() {
       {/* Secondary nav */}
       <div style={{ background: '#2E2E2E' }}>
         <div className="max-w-7xl mx-auto px-4">
-          <div className="hidden md:flex items-center h-10 gap-6">
-            <Link href="/como-funciona" className="text-sm text-gray-300 hover:text-white font-medium transition-colors">Como Funciona</Link>
-            <Link href="/freelancers" className="text-sm text-gray-300 hover:text-white font-medium transition-colors">Encontrar Freelancers</Link>
-            <Link href="/projetos" className="text-sm text-gray-300 hover:text-white font-medium transition-colors">Encontrar Trabalho</Link>
+          <div className="hidden md:flex items-center h-9 gap-5">
+            <Link href="/como-funciona" className="text-xs text-gray-300 hover:text-white font-medium transition-colors">Como Funciona</Link>
+            <Link href="/freelancers" className="text-xs text-gray-300 hover:text-white font-medium transition-colors">Encontrar Freelancers</Link>
+            <Link href="/projetos" className="text-xs text-gray-300 hover:text-white font-medium transition-colors">Encontrar Trabalho</Link>
           </div>
         </div>
       </div>

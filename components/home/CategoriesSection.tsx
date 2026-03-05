@@ -47,9 +47,9 @@ const categories = [
 
 export default function CategoriesSection() {
   return (
-    <section className="py-12 bg-gray-100">
+    <section className="py-10 bg-gray-50">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 text-center mb-6">
           Encontre freelancers talentosos para...
         </h2>
 
@@ -58,8 +58,8 @@ export default function CategoriesSection() {
             <Link
               key={cat.bold}
               href={cat.href}
-              className="relative group block overflow-hidden"
-              style={{ height: '160px' }}
+              className="relative group block overflow-hidden rounded"
+              style={{ height: '140px' }}
             >
               {/* Background image */}
               <div
@@ -70,18 +70,17 @@ export default function CategoriesSection() {
               <div className="absolute inset-0" style={{ background: cat.color }} />
               {/* Text */}
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-                <span className="text-base font-normal drop-shadow">{cat.label}</span>
-                <span className="text-xl font-bold drop-shadow">{cat.bold}</span>
+                <span className="text-sm font-normal drop-shadow">{cat.label}</span>
+                <span className="text-lg font-bold drop-shadow">{cat.bold}</span>
               </div>
             </Link>
           ))}
         </div>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-6">
           <Link
             href="/categorias"
-            className="inline-block border border-gray-400 text-gray-600 hover:border-gray-600 hover:text-gray-800 text-sm font-medium px-8 py-2.5 transition-colors"
-          >
+            className="inline-block border border-gray-400 text-gray-600 hover:border-gray-600 hover:text-gray-800 text-xs font-medium px-6 py-2 rounded transition-colors">
             Ver todas categorias
           </Link>
         </div>

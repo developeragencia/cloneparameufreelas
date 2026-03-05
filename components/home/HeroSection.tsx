@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative min-h-[420px] flex items-center"
+      className="relative min-h-[380px] flex items-center"
       style={{
         backgroundImage: 'url(https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80)',
         backgroundSize: 'cover',
@@ -36,33 +36,31 @@ export default function HeroSection() {
       }}
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.55)' }} />
+      <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.6)' }} />
 
-      <div className="relative w-full max-w-4xl mx-auto px-4 py-20 text-center text-white">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
+      <div className="relative w-full max-w-4xl mx-auto px-4 py-16 text-center">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-6 text-white">
           Encontre o melhor profissional freelancer<br />
           para{' '}
           <span
-            className="transition-opacity duration-300"
+            className="text-white transition-opacity duration-300"
             style={{ opacity: fade ? 1 : 0 }}
           >
             {rotatingKeywords[idx]}.
           </span>
         </h1>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/publicar-projeto"
-            className="px-10 py-3.5 text-base font-semibold text-white rounded-sm transition-colors"
+            className="px-8 py-3 text-sm font-semibold text-white rounded transition-colors"
             style={{ background: '#00AEEF' }}
-            onMouseEnter={e => (e.currentTarget.style.background = '#0099d4')}
-            onMouseLeave={e => (e.currentTarget.style.background = '#00AEEF')}
           >
             Publicar projeto
           </Link>
           <Link
             href="/cadastro?tipo=freelancer"
-            className="px-10 py-3.5 text-base font-semibold text-white border-2 border-white rounded-sm hover:bg-white hover:text-gray-800 transition-colors"
+            className="px-8 py-3 text-sm font-semibold text-white border-2 border-white rounded hover:bg-white hover:text-gray-800 transition-colors"
           >
             Quero Trabalhar
           </Link>

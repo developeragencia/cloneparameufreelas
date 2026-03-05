@@ -20,25 +20,25 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-14 md:py-20" style={{ background: '#3C3C3C' }}>
+    <section className="py-10 md:py-14" style={{ background: '#3C3C3C' }}>
       <div className="max-w-5xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">Como Funciona?</h2>
-          <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Como Funciona?</h2>
+          <p className="text-gray-300 text-xs sm:text-sm max-w-2xl mx-auto">
             Anuncie o seu trabalho facilmente, contrate freelancers e pague com segurança.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {steps.map((step) => {
             const Icon = step.icon
             return (
               <div key={step.title} className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 rounded-full border-2 border-white/40 flex items-center justify-center mb-5">
-                  <Icon className="w-9 h-9 text-white" strokeWidth={1.5} />
+                <div className="w-16 h-16 rounded-full border-2 border-white/40 flex items-center justify-center mb-4">
+                  <Icon className="w-7 h-7 text-white" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-bold text-white text-base mb-3">{step.title}</h3>
-                <p className="text-gray-300 text-sm leading-relaxed">{step.desc}</p>
+                <h3 className="font-bold text-white text-sm mb-2">{step.title}</h3>
+                <p className="text-gray-300 text-xs leading-relaxed">{step.desc}</p>
               </div>
             )
           })}

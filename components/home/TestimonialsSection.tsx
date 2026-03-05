@@ -28,17 +28,17 @@ export default function TestimonialsSection() {
   const [page, setPage] = useState(0)
 
   return (
-    <section className="py-14 md:py-20" style={{ background: '#00AEEF' }}>
+    <section className="py-10 md:py-14" style={{ background: '#00AEEF' }}>
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-10">
+        <h2 className="text-xl sm:text-2xl font-bold text-white text-center mb-8">
           O que nossos clientes estão dizendo
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
           {pages[page].map((t) => (
-            <div key={t.name} className="p-6 rounded" style={{ background: 'rgba(0,0,0,0.15)' }}>
-              <p className="text-white text-sm leading-relaxed mb-4">{t.text}</p>
-              <p className="text-white font-semibold text-sm">- {t.name}</p>
+            <div key={t.name} className="p-5 rounded" style={{ background: 'rgba(0,0,0,0.15)' }}>
+              <p className="text-white text-xs leading-relaxed mb-3">{t.text}</p>
+              <p className="text-white font-semibold text-xs">- {t.name}</p>
             </div>
           ))}
         </div>
