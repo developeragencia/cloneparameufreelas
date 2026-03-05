@@ -41,14 +41,17 @@
 }
 
 @layer components {
-  .btn-blue {
-    @apply inline-flex items-center justify-center gap-2 bg-[#1A56DB] hover:bg-[#1446BF] text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors duration-150;
+  .btn-cyan {
+    @apply inline-flex items-center justify-center gap-2 bg-[#00AEEF] hover:bg-[#0099d4] text-white font-semibold px-5 py-2.5 rounded text-sm transition-colors duration-150;
   }
-  .btn-orange {
-    @apply inline-flex items-center justify-center gap-2 bg-[#F97316] hover:bg-[#EA6C0A] text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors duration-150;
+  .btn-blue {
+    @apply inline-flex items-center justify-center gap-2 bg-[#00AEEF] hover:bg-[#0099d4] text-white font-semibold px-5 py-2.5 rounded text-sm transition-colors duration-150;
+  }
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[#3C3C3C] font-semibold px-5 py-2.5 rounded text-sm transition-colors duration-150;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border border-gray-300 hover:border-[#1A56DB] text-gray-700 hover:text-[#1A56DB] font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors duration-150 bg-white;
+    @apply inline-flex items-center justify-center gap-2 border border-[#00AEEF] text-[#00AEEF] hover:bg-[#00AEEF] hover:text-white font-semibold px-5 py-2.5 rounded text-sm transition-colors duration-150 bg-white;
   }
   .section-title {
     @apply text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-3;

@@ -1,50 +1,88 @@
 import Link from 'next/link'
 
 const categories = [
-  { icon: '💻', title: 'Programação', sub: 'Web, Mobile, APIs', href: '/freelancers?categoria=tecnologia', count: '18.4k' },
-  { icon: '🎨', title: 'Design', sub: 'UI/UX, Logos, Branding', href: '/freelancers?categoria=design', count: '12.2k' },
-  { icon: '📣', title: 'Marketing', sub: 'SEO, Social, Ads', href: '/freelancers?categoria=marketing', count: '9.8k' },
-  { icon: '✍️', title: 'Redação', sub: 'Conteúdo, Copywriting', href: '/freelancers?categoria=redacao', count: '7.3k' },
-  { icon: '🎬', title: 'Vídeo', sub: 'Edição, Animação', href: '/freelancers?categoria=video', count: '5.6k' },
-  { icon: '📊', title: 'Finanças', sub: 'Contabilidade, BI', href: '/freelancers?categoria=financas', count: '4.1k' },
-  { icon: '🌎', title: 'Idiomas', sub: 'Tradução, Ensino', href: '/freelancers?categoria=idiomas', count: '3.2k' },
-  { icon: '🤝', title: 'Consultoria', sub: 'Gestão, Estratégia', href: '/freelancers?categoria=consultoria', count: '2.9k' },
-  { icon: '📷', title: 'Fotografia', sub: 'Produto, Retrato', href: '/freelancers?categoria=fotografia', count: '2.4k' },
-  { icon: '🎵', title: 'Música', sub: 'Produção, Locução', href: '/freelancers?categoria=musica', count: '1.8k' },
+  {
+    label: 'Desenhar o seu',
+    bold: 'website',
+    href: '/freelancers?categoria=design',
+    color: 'rgba(0,174,239,0.75)',
+    img: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=70',
+  },
+  {
+    label: 'Escrever o seu',
+    bold: 'conteúdo',
+    href: '/freelancers?categoria=redacao',
+    color: 'rgba(180,0,180,0.65)',
+    img: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=70',
+  },
+  {
+    label: 'Desenvolver o seu',
+    bold: 'código',
+    href: '/freelancers?categoria=tecnologia',
+    color: 'rgba(200,50,50,0.70)',
+    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=70',
+  },
+  {
+    label: 'Melhorar o seu',
+    bold: 'SEO',
+    href: '/freelancers?categoria=marketing',
+    color: 'rgba(200,160,0,0.72)',
+    img: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=600&q=70',
+  },
+  {
+    label: 'Desenhar o seu',
+    bold: 'logotipo',
+    href: '/freelancers?categoria=design',
+    color: 'rgba(0,150,70,0.72)',
+    img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=70',
+  },
+  {
+    label: 'Criar o seu',
+    bold: 'vídeo',
+    href: '/freelancers?categoria=video',
+    color: 'rgba(0,150,180,0.72)',
+    img: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&q=70',
+  },
 ]
 
 export default function CategoriesSection() {
   return (
-    <section className="py-12 md:py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Navegue por categoria</h2>
-            <p className="text-gray-500 text-sm mt-1">Encontre o especialista certo para cada necessidade</p>
-          </div>
-          <Link href="/categorias" className="hidden sm:inline-flex text-[#1A56DB] text-sm font-semibold hover:underline">
-            Ver todas →
-          </Link>
-        </div>
+    <section className="py-12 bg-gray-100">
+      <div className="max-w-5xl mx-auto px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-8">
+          Encontre freelancers talentosos para...
+        </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {categories.map((cat) => (
             <Link
-              key={cat.title}
+              key={cat.bold}
               href={cat.href}
-              className="group flex flex-col items-center text-center p-5 rounded-xl border border-gray-200 hover:border-[#1A56DB] hover:shadow-md transition-all duration-150 bg-white"
+              className="relative group block overflow-hidden"
+              style={{ height: '160px' }}
             >
-              <span className="text-3xl mb-3">{cat.icon}</span>
-              <h3 className="font-semibold text-gray-800 text-sm leading-tight mb-1 group-hover:text-[#1A56DB] transition-colors">{cat.title}</h3>
-              <p className="text-[11px] text-gray-400 leading-tight mb-1">{cat.sub}</p>
-              <span className="text-[11px] font-medium text-[#1A56DB]">{cat.count} freelas</span>
+              {/* Background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+                style={{ backgroundImage: `url(${cat.img})` }}
+              />
+              {/* Color overlay */}
+              <div className="absolute inset-0" style={{ background: cat.color }} />
+              {/* Text */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+                <span className="text-base font-normal drop-shadow">{cat.label}</span>
+                <span className="text-xl font-bold drop-shadow">{cat.bold}</span>
+              </div>
             </Link>
           ))}
         </div>
 
-        <div className="text-center mt-6 sm:hidden">
-          <Link href="/categorias" className="text-[#1A56DB] text-sm font-semibold hover:underline">
-            Ver todas as categorias →
+        <div className="text-center mt-8">
+          <Link
+            href="/categorias"
+            className="inline-block border border-gray-400 text-gray-600 hover:border-gray-600 hover:text-gray-800 text-sm font-medium px-8 py-2.5 transition-colors"
+          >
+            Ver todas categorias
           </Link>
         </div>
       </div>

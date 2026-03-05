@@ -57,7 +57,7 @@ function LoginPageInner() {
             <h1 className="text-2xl font-bold text-gray-900">Entrar na sua conta</h1>
             <p className="mt-1.5 text-gray-500 text-sm">
               Não tem conta?{' '}
-              <Link href="/cadastro" className="text-[#1A56DB] font-semibold hover:underline">
+              <Link href="/cadastro" className="text-[#00AEEF] font-semibold hover:underline">
                 Cadastre-se grátis
               </Link>
             </p>
@@ -120,14 +120,14 @@ function LoginPageInner() {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="seu@email.com"
                   required
-                  className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent bg-white"
+                  className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:border-transparent bg-white"
                 />
               </div>
             </div>
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-semibold text-gray-700">Senha</label>
-                <Link href="/esqueci-senha" className="text-xs text-[#1A56DB] font-medium hover:underline">
+                <Link href="/esqueci-senha" className="text-xs text-[#00AEEF] font-medium hover:underline">
                   Esqueci minha senha
                 </Link>
               </div>
@@ -138,7 +138,7 @@ function LoginPageInner() {
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   placeholder="Sua senha"
                   required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent pr-12 bg-white"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:border-transparent pr-12 bg-white"
                 />
                 <button type="button" onClick={() => setShow(!show)} className="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600">
                   {show ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -149,7 +149,7 @@ function LoginPageInner() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#1A56DB] hover:bg-[#1446BF] text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 text-sm"
+              className="w-full bg-[#00AEEF] hover:bg-[#0099d4] text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 text-sm"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -162,7 +162,7 @@ function LoginPageInner() {
 
           <p className="text-center text-xs text-gray-400 mt-6">
             Ao entrar, você concorda com nossos{' '}
-            <Link href="/termos" className="text-[#1A56DB] hover:underline">Termos de Uso</Link>
+            <Link href="/termos" className="text-[#00AEEF] hover:underline">Termos de Uso</Link>
           </p>
 
       </div>
@@ -173,3 +173,4 @@ function LoginPageInner() {
 export default function LoginPage() {
   return <Suspense fallback={null}><LoginPageInner /></Suspense>
 }
+

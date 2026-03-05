@@ -66,7 +66,7 @@ function CadastroPageInner() {
             <h1 className="text-2xl font-bold text-gray-900">Criar conta grátis</h1>
             <p className="mt-1.5 text-gray-500 text-sm">
               Já tem conta?{' '}
-              <Link href="/login" className="text-[#1A56DB] font-semibold hover:underline">Fazer login</Link>
+              <Link href="/login" className="text-[#00AEEF] font-semibold hover:underline">Fazer login</Link>
             </p>
           </div>
 
@@ -77,7 +77,7 @@ function CadastroPageInner() {
               onClick={() => setTipo('cliente')}
               className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
                 tipo === 'cliente'
-                  ? 'border-[#1A56DB] bg-blue-50 text-[#1A56DB]'
+                  ? 'border-[#00AEEF] bg-blue-50 text-[#00AEEF]'
                   : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300'
               }`}
             >
@@ -90,7 +90,7 @@ function CadastroPageInner() {
               onClick={() => setTipo('freelancer')}
               className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
                 tipo === 'freelancer'
-                  ? 'border-[#1A56DB] bg-blue-50 text-[#1A56DB]'
+                  ? 'border-[#00AEEF] bg-blue-50 text-[#00AEEF]'
                   : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300'
               }`}
             >
@@ -157,7 +157,7 @@ function CadastroPageInner() {
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder={tipo === 'freelancer' ? 'Seu nome completo' : 'Nome da empresa ou seu nome'}
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent bg-white"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:border-transparent bg-white"
               />
             </div>
             <div>
@@ -170,7 +170,7 @@ function CadastroPageInner() {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="seu@email.com"
                   required
-                  className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent bg-white"
+                  className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:border-transparent bg-white"
                 />
               </div>
             </div>
@@ -182,7 +182,7 @@ function CadastroPageInner() {
                   value={form.city}
                   onChange={(e) => setForm({ ...form, city: e.target.value })}
                   placeholder="Sua cidade"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent bg-white"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:border-transparent bg-white"
                 />
               </div>
               <div>
@@ -190,7 +190,7 @@ function CadastroPageInner() {
                 <select
                   value={form.state}
                   onChange={(e) => setForm({ ...form, state: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent bg-white"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:border-transparent bg-white"
                 >
                   <option value="">UF</option>
                   {estados.map((uf) => <option key={uf} value={uf}>{uf}</option>)}
@@ -207,7 +207,7 @@ function CadastroPageInner() {
                   placeholder="Mínimo 6 caracteres"
                   required
                   minLength={6}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent pr-12 bg-white"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:border-transparent pr-12 bg-white"
                 />
                 <button type="button" onClick={() => setShow(!show)} className="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600">
                   {show ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -223,7 +223,7 @@ function CadastroPageInner() {
                   onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
                   placeholder="Repita sua senha"
                   required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent pr-12 bg-white"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:border-transparent pr-12 bg-white"
                 />
                 <button type="button" onClick={() => setShowConfirm(!showConfirm)} className="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600">
                   {showConfirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -234,7 +234,7 @@ function CadastroPageInner() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#1A56DB] hover:bg-[#1446BF] text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 text-sm mt-2"
+              className="w-full bg-[#00AEEF] hover:bg-[#0099d4] text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 text-sm mt-2"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -247,9 +247,9 @@ function CadastroPageInner() {
 
           <p className="text-center text-xs text-gray-400 mt-4">
             Ao criar uma conta, você concorda com nossos{' '}
-            <Link href="/termos" className="text-[#1A56DB] hover:underline">Termos de Uso</Link>{' '}
+            <Link href="/termos" className="text-[#00AEEF] hover:underline">Termos de Uso</Link>{' '}
             e{' '}
-            <Link href="/privacidade" className="text-[#1A56DB] hover:underline">Política de Privacidade</Link>
+            <Link href="/privacidade" className="text-[#00AEEF] hover:underline">Política de Privacidade</Link>
           </p>
       </div>
     </div>
@@ -259,3 +259,4 @@ function CadastroPageInner() {
 export default function CadastroPage() {
   return <Suspense fallback={null}><CadastroPageInner /></Suspense>
 }
+
