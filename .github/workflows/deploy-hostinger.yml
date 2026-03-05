@@ -31,7 +31,6 @@ jobs:
               git checkout "$BRANCH"
             fi
             cd "$APP_DIR"
-            rm -rf .next node_modules/.cache
             npm ci --no-audit --no-fund --include=dev
             npm run assets:logo || true
             npx prisma db push
