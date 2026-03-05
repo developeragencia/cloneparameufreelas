@@ -8,7 +8,7 @@ const testimonials = [
   },
   {
     name: 'Lincoln Tamashiro',
-    content: '" Dentre as plataformas de freelas, a 99 foi a que tem a maior base de respostas entre propostas de freelas. O nível da base de dados de profissionais disponíveis é muito acima do esperado. Sobre a plataforma, é necessário apenas alguns ajustes de respostas nas informações. Mas a plataforma é limpa e objetiva. Parabéns ao 99Freelas. "',
+    content: '" Dentre as plataformas de freelas, o MeuFreelas foi a que tem a maior base de respostas entre propostas de freelas. O nível da base de dados de profissionais disponíveis é muito acima do esperado. Sobre a plataforma, é necessário apenas alguns ajustes de respostas nas informações. Mas a plataforma é limpa e objetiva. Parabéns ao MeuFreelas. "',
   },
 ]
 
