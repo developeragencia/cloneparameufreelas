@@ -11,11 +11,15 @@ export default function Header() {
   const router = useRouter()
   const [menuOpen, setMenuOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [searchDropdown, setSearchDropdown] = useState(false)
+  const [searchType, setSearchType] = useState('Freelancers')
   const [searchQuery, setSearchQuery] = useState('')
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    if (searchQuery.trim()) router.push(`/freelancers?q=${encodeURIComponent(searchQuery)}`)
+    const path = searchType === 'Projetos' ? '/projetos' : '/freelancers'
+    if (searchQuery.trim()) router.push(`${path}?q=${encodeURIComponent(searchQuery)}`)
+    else router.push(path)
   }
 
   const getDashboardPath = () => {
@@ -36,16 +40,36 @@ export default function Header() {
           </Link>
 
           {/* Search bar - desktop */}
-          <div className="hidden md:flex items-center flex-1 max-w-2xl mx-6">
+          <div className="hidden md:flex items-center flex-1 max-w-2xl mx-6 relative">
             <form onSubmit={handleSearch} className="flex w-full">
-              <select className="bg-[#00aeef] text-white px-4 py-2.5 text-sm font-medium border-0 outline-none cursor-pointer">
-                <option>Freelancers</option>
-              </select>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setSearchDropdown(!searchDropdown)}
+                  className="flex items-center gap-1 bg-[#00aeef] text-white px-4 py-2.5 text-sm font-semibold h-full whitespace-nowrap"
+                >
+                  {searchType} <ChevronDown className="w-4 h-4" />
+                </button>
+                {searchDropdown && (
+                  <div className="absolute top-full left-0 bg-white shadow-lg border rounded-b z-50 min-w-[140px]">
+                    {['Freelancers', 'Projetos'].map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => { setSearchType(opt); setSearchDropdown(false) }}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Buscar freelancers"
+                placeholder={`Buscar ${searchType.toLowerCase()}`}
                 className="flex-1 px-4 py-2.5 text-gray-800 text-sm outline-none border-0"
               />
               <button type="submit" className="bg-white px-4 py-2.5 hover:bg-gray-100 transition-colors">
