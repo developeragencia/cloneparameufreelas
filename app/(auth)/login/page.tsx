@@ -165,9 +165,6 @@ function LoginPageInner() {
             <Link href="/termos" className="text-[#00aeef] hover:underline">Termos de Uso</Link>
           </p>
 
-          <p className="text-center mt-4 text-xs text-gray-400 bg-gray-100 rounded-lg py-2 px-4">
-            <strong>Demo:</strong> cliente@demo.com.br / Cliente@123
-          </p>
       </div>
     </div>
   )
