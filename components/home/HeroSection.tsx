@@ -1,114 +1,138 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Star, TrendingUp, Shield } from 'lucide-react'
+import { Search, ChevronDown } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
-const rotatingTexts = [
-  'desenvolver seu código',
-  'criar seu site',
-  'escrever seu conteúdo',
-  'desenhar seu logo',
-  'melhorar seu SEO',
-  'editar seu vídeo',
-]
+const rotatingWords = ['website', 'aplicativo', 'logotipo', 'conteúdo', 'marketing', 'vídeo']
 
-const badges = [
-  { icon: Star, text: '3.4M+ Freelancers' },
-  { icon: Shield, text: 'Pagamento Seguro' },
-  { icon: TrendingUp, text: '136k Projetos' },
-]
+const popularSearches = ['Designer UI/UX', 'Desenvolvedor React', 'Redator', 'Especialista SEO']
 
 export default function HeroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [visible, setVisible] = useState(true)
+  const router = useRouter()
+  const [wordIndex, setWordIndex] = useState(0)
+  const [animating, setAnimating] = useState(false)
+  const [query, setQuery] = useState('')
+  const [searchType, setSearchType] = useState('Freelancers')
+  const [showDrop, setShowDrop] = useState(false)
+  const dropRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setVisible(false)
+    const t = setInterval(() => {
+      setAnimating(true)
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % rotatingTexts.length)
-        setVisible(true)
-      }, 300)
-    }, 3000)
-    return () => clearInterval(interval)
+        setWordIndex(p => (p + 1) % rotatingWords.length)
+        setAnimating(false)
+      }, 250)
+    }, 2800)
+    return () => clearInterval(t)
   }, [])
 
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) setShowDrop(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    const path = searchType === 'Projetos' ? '/projetos' : '/freelancers'
+    router.push(query.trim() ? `${path}?q=${encodeURIComponent(query)}` : path)
+  }
+
   return (
-    <section className="relative overflow-hidden text-white hero-mesh" style={{ minHeight: '480px' }}>
-      {/* Decorative orbs */}
-      <div className="absolute top-10 left-10 w-64 h-64 rounded-full opacity-20 blur-3xl"
-        style={{ background: 'radial-gradient(circle, #6366F1, transparent)' }} />
-      <div className="absolute bottom-0 right-10 w-80 h-80 rounded-full opacity-15 blur-3xl"
-        style={{ background: 'radial-gradient(circle, #22D3EE, transparent)' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-10 blur-3xl"
-        style={{ background: 'radial-gradient(circle, #F97316, transparent)' }} />
+    <section
+      className="relative text-white"
+      style={{ background: 'linear-gradient(135deg, #1140A0 0%, #1A56DB 50%, #1E6FE8 100%)', paddingTop: '60px', paddingBottom: '70px' }}
+    >
+      {/* Subtle pattern */}
+      <div className="absolute inset-0 opacity-[0.04]"
+        style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
 
-      {/* Grid overlay */}
-      <div className="absolute inset-0 opacity-5"
-        style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
-
-      <div className="relative max-w-5xl mx-auto px-4 py-16 md:py-24 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs font-semibold text-cyan-300 mb-6 backdrop-blur-sm">
-          <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
-          A maior plataforma de freelancers do Brasil
-        </div>
-
+      <div className="relative max-w-4xl mx-auto px-4 text-center">
         {/* Headline */}
-        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight">
-          Encontre o freelancer ideal
-          <br />
-          <span className="text-white/60 font-light text-xl sm:text-3xl md:text-4xl">para </span>
+        <h1 className="text-3xl sm:text-4xl md:text-[2.8rem] font-extrabold leading-tight mb-3 tracking-tight">
+          Encontre o freelancer ideal<br />
+          para o seu{' '}
           <span
-            className="inline-block"
-            style={{
-              background: 'linear-gradient(135deg, #6366F1, #22D3EE)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              transition: 'opacity 0.3s ease',
-              opacity: visible ? 1 : 0,
-            }}
+            className="inline-block min-w-[140px] text-left transition-all duration-200"
+            style={{ opacity: animating ? 0 : 1, transform: animating ? 'translateY(-6px)' : 'translateY(0)' }}
           >
-            {rotatingTexts[currentIndex]}
+            <span className="relative">
+              <span className="relative z-10">{rotatingWords[wordIndex]}</span>
+              <span className="absolute bottom-1 left-0 right-0 h-3 bg-white/20 rounded" />
+            </span>
           </span>
         </h1>
 
-        <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8">
-          Conectamos empresas e profissionais talentosos. Publique seu projeto e receba propostas em minutos.
+        <p className="text-blue-100 text-base sm:text-lg mb-8 max-w-xl mx-auto font-normal">
+          Mais de <strong className="text-white">3.4 milhões</strong> de profissionais prontos para o seu projeto.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-          <Link
-            href="/publicar-projeto"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#F97316] hover:bg-[#EA6C0A] text-white font-bold px-8 py-3.5 rounded-xl text-sm md:text-base transition-all shadow-2xl shadow-orange-900/40 hover:-translate-y-0.5"
-          >
-            Publicar Projeto <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/cadastro?tipo=freelancer"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 border border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-xl text-sm md:text-base transition-all backdrop-blur-sm"
-          >
-            Sou Freelancer
-          </Link>
-        </div>
+        {/* Search bar */}
+        <form onSubmit={handleSearch} className="flex max-w-2xl mx-auto rounded-xl overflow-hidden shadow-2xl mb-5">
+          {/* Type selector */}
+          <div ref={dropRef} className="relative bg-white border-r border-gray-200 flex-shrink-0">
+            <button type="button" onClick={() => setShowDrop(!showDrop)}
+              className="flex items-center gap-1.5 px-4 py-4 text-sm font-semibold text-gray-700 whitespace-nowrap h-full hover:bg-gray-50 transition-colors">
+              {searchType} <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
+            </button>
+            {showDrop && (
+              <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 z-50 w-36 overflow-hidden">
+                {['Freelancers', 'Projetos'].map(opt => (
+                  <button key={opt} type="button" onClick={() => { setSearchType(opt); setShowDrop(false) }}
+                    className="block w-full text-left px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#1A56DB]">
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          {/* Input */}
+          <input
+            type="text" value={query} onChange={e => setQuery(e.target.value)}
+            placeholder={`Ex: desenvolvedor React, designer, redator...`}
+            className="flex-1 px-5 py-4 text-gray-800 text-sm outline-none bg-white"
+          />
+          {/* Submit */}
+          <button type="submit"
+            className="px-6 py-4 bg-[#F97316] hover:bg-[#E86300] text-white font-bold text-sm transition-colors whitespace-nowrap flex items-center gap-2">
+            <Search className="w-4 h-4" />
+            <span className="hidden sm:inline">Buscar</span>
+          </button>
+        </form>
 
-        {/* Trust badges */}
-        <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
-          {badges.map(({ icon: Icon, text }) => (
-            <div key={text} className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs font-medium text-gray-300 backdrop-blur-sm">
-              <Icon className="w-3.5 h-3.5 text-indigo-400" />
-              {text}
-            </div>
+        {/* Popular searches */}
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span className="text-blue-200 text-xs font-medium">Popular:</span>
+          {popularSearches.map(term => (
+            <button key={term} onClick={() => { setQuery(term); router.push(`/freelancers?q=${encodeURIComponent(term)}`) }}
+              className="text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full border border-white/20 transition-colors">
+              {term}
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Bottom wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 40L1440 40L1440 20C1200 0 960 40 720 20C480 0 240 40 0 20L0 40Z" fill="#F8FAFC"/>
-        </svg>
+      {/* Stats bar */}
+      <div className="relative mt-10 border-t border-white/20">
+        <div className="max-w-4xl mx-auto px-4 pt-6">
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12">
+            {[
+              { value: '3.4M+', label: 'Freelancers cadastrados' },
+              { value: '136 mil', label: 'Projetos publicados' },
+              { value: 'R$ 26M+', label: 'Pagos com segurança' },
+              { value: '4.8★', label: 'Avaliação média' },
+            ].map(stat => (
+              <div key={stat.label} className="text-center">
+                <div className="text-xl sm:text-2xl font-extrabold text-white">{stat.value}</div>
+                <div className="text-xs text-blue-200 mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -1,86 +1,49 @@
 import Link from 'next/link'
 
 const categories = [
-  {
-    icon: '💻',
-    title: 'Desenvolvimento',
-    sub: 'Web, Mobile, APIs',
-    slug: 'desenvolvimento',
-    gradient: 'from-indigo-500 to-purple-600',
-    light: 'bg-indigo-50 text-indigo-600',
-  },
-  {
-    icon: '🎨',
-    title: 'Design',
-    sub: 'UI/UX, Logos, Branding',
-    slug: 'design-web',
-    gradient: 'from-pink-500 to-rose-500',
-    light: 'bg-pink-50 text-pink-600',
-  },
-  {
-    icon: '✍️',
-    title: 'Conteúdo',
-    sub: 'Textos, Blog, Copywriting',
-    slug: 'redacao-conteudo',
-    gradient: 'from-emerald-500 to-teal-500',
-    light: 'bg-emerald-50 text-emerald-600',
-  },
-  {
-    icon: '📈',
-    title: 'Marketing',
-    sub: 'SEO, Ads, Redes Sociais',
-    slug: 'seo-marketing',
-    gradient: 'from-orange-500 to-amber-500',
-    light: 'bg-orange-50 text-orange-600',
-  },
-  {
-    icon: '🎥',
-    title: 'Vídeo & Áudio',
-    sub: 'Edição, Animação, Podcast',
-    slug: 'video-animacao',
-    gradient: 'from-cyan-500 to-blue-500',
-    light: 'bg-cyan-50 text-cyan-600',
-  },
-  {
-    icon: '📊',
-    title: 'Negócios',
-    sub: 'Finanças, Consultoria, RH',
-    slug: 'negocios',
-    gradient: 'from-violet-500 to-indigo-500',
-    light: 'bg-violet-50 text-violet-600',
-  },
+  { icon: '💻', title: 'Programação', sub: 'Web, Mobile, APIs', href: '/freelancers?categoria=tecnologia', count: '18.4k' },
+  { icon: '🎨', title: 'Design', sub: 'UI/UX, Logos, Branding', href: '/freelancers?categoria=design', count: '12.2k' },
+  { icon: '📣', title: 'Marketing', sub: 'SEO, Social, Ads', href: '/freelancers?categoria=marketing', count: '9.8k' },
+  { icon: '✍️', title: 'Redação', sub: 'Conteúdo, Copywriting', href: '/freelancers?categoria=redacao', count: '7.3k' },
+  { icon: '🎬', title: 'Vídeo', sub: 'Edição, Animação', href: '/freelancers?categoria=video', count: '5.6k' },
+  { icon: '📊', title: 'Finanças', sub: 'Contabilidade, BI', href: '/freelancers?categoria=financas', count: '4.1k' },
+  { icon: '🌎', title: 'Idiomas', sub: 'Tradução, Ensino', href: '/freelancers?categoria=idiomas', count: '3.2k' },
+  { icon: '🤝', title: 'Consultoria', sub: 'Gestão, Estratégia', href: '/freelancers?categoria=consultoria', count: '2.9k' },
+  { icon: '📷', title: 'Fotografia', sub: 'Produto, Retrato', href: '/freelancers?categoria=fotografia', count: '2.4k' },
+  { icon: '🎵', title: 'Música', sub: 'Produção, Locução', href: '/freelancers?categoria=musica', count: '1.8k' },
 ]
 
 export default function CategoriesSection() {
   return (
-    <section className="py-12 md:py-16 bg-[#F8FAFC]">
+    <section className="py-12 md:py-16 bg-white">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="section-title">Explore por categoria</h2>
-          <p className="section-subtitle">Encontre o especialista certo para cada tipo de projeto</p>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Navegue por categoria</h2>
+            <p className="text-gray-500 text-sm mt-1">Encontre o especialista certo para cada necessidade</p>
+          </div>
+          <Link href="/categorias" className="hidden sm:inline-flex text-[#1A56DB] text-sm font-semibold hover:underline">
+            Ver todas →
+          </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {categories.map((cat) => (
             <Link
-              key={cat.slug}
-              href={`/freelancers?categoria=${cat.slug}`}
-              className="group bg-white rounded-2xl p-4 md:p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              key={cat.title}
+              href={cat.href}
+              className="group flex flex-col items-center text-center p-5 rounded-xl border border-gray-200 hover:border-[#1A56DB] hover:shadow-md transition-all duration-150 bg-white"
             >
-              <div className={`inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${cat.gradient} text-2xl md:text-3xl mb-3 shadow-lg`}>
-                {cat.icon}
-              </div>
-              <h3 className="font-bold text-gray-900 text-sm md:text-base mb-0.5 group-hover:text-indigo-600 transition-colors">{cat.title}</h3>
-              <p className="text-xs text-gray-500 leading-snug hidden sm:block">{cat.sub}</p>
+              <span className="text-3xl mb-3">{cat.icon}</span>
+              <h3 className="font-semibold text-gray-800 text-sm leading-tight mb-1 group-hover:text-[#1A56DB] transition-colors">{cat.title}</h3>
+              <p className="text-[11px] text-gray-400 leading-tight mb-1">{cat.sub}</p>
+              <span className="text-[11px] font-medium text-[#1A56DB]">{cat.count} freelas</span>
             </Link>
           ))}
         </div>
 
-        <div className="text-center mt-8">
-          <Link
-            href="/categorias"
-            className="inline-flex items-center gap-2 border-2 border-indigo-200 text-indigo-600 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-6 py-2.5 rounded-xl transition-all font-semibold text-sm"
-          >
+        <div className="text-center mt-6 sm:hidden">
+          <Link href="/categorias" className="text-[#1A56DB] text-sm font-semibold hover:underline">
             Ver todas as categorias →
           </Link>
         </div>
