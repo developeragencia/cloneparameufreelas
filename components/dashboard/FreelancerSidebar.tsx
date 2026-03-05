@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LayoutDashboard, Briefcase, FileText, MessageSquare, CreditCard, User, Image } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
 
 const links = [
   { href: '/dashboard/freelancer', label: 'Visão Geral', icon: LayoutDashboard, exact: true },
@@ -19,10 +20,7 @@ export default function FreelancerSidebar() {
   return (
     <aside className="w-64 bg-[#1a1a2e] text-white flex-shrink-0 hidden md:flex flex-col">
       <div className="p-6 border-b border-white border-opacity-10">
-        <Link href="/" className="font-black text-xl">
-          <span className="text-white">99</span>
-          <span className="text-[#00aeef]">freelas</span>
-        </Link>
+        <Logo href="/" size="lg" variant="light" />
         <p className="text-xs text-gray-400 mt-1">Painel do Freelancer</p>
       </div>
 

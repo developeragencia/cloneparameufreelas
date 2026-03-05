@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { signOut } from 'next-auth/react'
 import { Bell, LogOut, User, Menu } from 'lucide-react'
 import { useState } from 'react'
+import Logo from '@/components/ui/Logo'
 
 interface Props {
   user: { name?: string | null; email?: string | null; image?: string | null; role?: string }
@@ -14,10 +15,7 @@ export default function DashboardHeader({ user }: Props) {
   return (
     <header className="bg-white border-b h-16 flex items-center justify-between px-6 sticky top-0 z-10 shadow-sm">
       <div className="flex items-center gap-3">
-        <Link href="/" className="font-black text-xl">
-          <span className="text-gray-800">99</span>
-          <span className="text-[#00aeef]">freelas</span>
-        </Link>
+        <Logo href="/" size="lg" variant="dark" />
       </div>
 
       <div className="flex items-center gap-4">

@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LayoutDashboard, Users, FolderOpen, CreditCard, AlertTriangle, Tag, Settings } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
 
 const links = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
@@ -19,10 +20,7 @@ export default function AdminSidebar() {
   return (
     <aside className="w-64 bg-[#0f0f23] text-white flex-shrink-0 hidden md:flex flex-col">
       <div className="p-6 border-b border-white border-opacity-10">
-        <Link href="/" className="font-black text-xl">
-          <span className="text-white">99</span>
-          <span className="text-[#00aeef]">freelas</span>
-        </Link>
+        <Logo href="/" size="lg" variant="light" />
         <p className="text-xs text-gray-400 mt-1">Painel Administrativo</p>
       </div>
 

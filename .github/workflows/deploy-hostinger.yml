@@ -32,6 +32,7 @@ jobs:
             fi
             cd "$APP_DIR"
             npm ci --no-audit --no-fund
+            npm run assets:logo || true
             npx prisma db push
             npx prisma generate
             npm run build

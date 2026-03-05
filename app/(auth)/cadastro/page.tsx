@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { Eye, EyeOff, UserPlus } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
 
 function CadastroPageInner() {
   const router = useRouter()
@@ -50,12 +51,7 @@ function CadastroPageInner() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-lg w-full">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-block">
-            <div className="text-3xl font-black">
-              <span className="text-gray-800">99</span>
-              <span className="text-[#00aeef]">freelas</span>
-            </div>
-          </Link>
+          <Logo size="xl" variant="dark" />
           <h2 className="mt-4 text-2xl font-bold text-gray-800">Criar sua conta</h2>
           <p className="mt-1 text-sm text-gray-500">
             Já tem conta?{' '}

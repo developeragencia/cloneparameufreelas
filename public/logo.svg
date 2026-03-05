@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="64" viewBox="0 0 280 64" role="img" aria-label="meufreelas">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00aeef"/>
+      <stop offset="100%" stop-color="#0077a8"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" rx="12" ry="12" width="48" height="48" fill="url(#g)"/>
+  <path d="M28 22c-5 0-9 4-9 9v13h6V31c0-2 2-4 3-4 2 0 3 2 3 4v13h6V31c0-2 2-4 3-4 2 0 3 2 3 4v13h6V31c0-7-5-9-8-9-3 0-5 1-7 3-1-2-4-3-6-3z" fill="#fff"/>
+  <text x="70" y="44" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="28" font-weight="800" fill="#1f2937">meu<tspan fill="#00aeef">freelas</tspan></text>
+</svg>

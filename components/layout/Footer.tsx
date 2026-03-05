@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Facebook, Twitter, Linkedin } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
 
 export default function Footer() {
   return (
@@ -16,10 +17,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="text-2xl font-black mb-3">
-              <span className="text-gray-800">99</span>
-              <span className="text-[#00aeef]">freelas</span>
-            </div>
+            <Logo size="lg" variant="dark" />
             <p className="text-sm text-gray-600 mb-4">
               Você é um freelancer? Nós conectamos milhares de profissionais a empresas todos os dias.
             </p>

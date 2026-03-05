@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
 import { Search, ChevronDown, Menu, X, Bell, MessageSquare, User, LogOut, Settings, LayoutDashboard } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import Logo from '@/components/ui/Logo'
 
 export default function Header() {
   const { data: session } = useSession()
@@ -30,12 +31,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0">
-            <div className="text-2xl font-black">
-              <span className="text-white">99</span>
-              <span className="text-[#00aeef]">freelas</span>
-            </div>
-          </Link>
+          <Logo href="/" size="lg" variant="light" className="flex-shrink-0" />
 
           {/* Search bar - desktop */}
           <div className="hidden md:flex items-center gap-2 flex-1 max-w-lg mx-6">
