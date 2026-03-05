@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
 
-const heroCategories = ['deseno', 'programação', 'marketing', 'redação', 'SEO', 'vídeo']
+const heroCategories = ['design', 'programação', 'marketing', 'redação', 'SEO', 'vídeo']
 
 export default function HeroSection() {
   const [currentCategory, setCurrentCategory] = useState(0)
@@ -27,27 +27,10 @@ export default function HeroSection() {
         <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">
           Encontre o melhor profissional freelancer
           <br />
-          <span className="text-[#00aeef]">para {heroCategories[currentCategory % heroCategories.length]}.</span>
+          para escrever o seu conteúdo.
         </h1>
 
-        {/* Search bar */}
-        <form onSubmit={handleSearch} className="flex items-center max-w-xl mx-auto mt-8 mb-8 shadow-xl rounded overflow-hidden">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Buscar freelancers por habilidade..."
-            className="flex-1 px-5 py-4 text-gray-800 text-base outline-none"
-          />
-          <button
-            type="submit"
-            className="bg-[#00aeef] hover:bg-[#0099d4] px-6 py-4 text-white transition-colors"
-          >
-            <Search className="w-5 h-5" />
-          </button>
-        </form>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
           <Link
             href="/publicar-projeto"
             className="bg-[#00aeef] hover:bg-[#0099d4] text-white font-bold px-10 py-4 rounded text-lg transition-colors shadow-lg"

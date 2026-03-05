@@ -14,7 +14,7 @@ const steps = [
   {
     icon: ShieldCheck,
     title: 'Pague com segurança',
-    description: 'Com o pagamento seguro do MeuFreelas, o pagamento será repassado para o freelancer somente quando o projeto estiver concluído.',
+    description: 'Com o pagamento seguro do 99Freelas, o pagamento será repassado para o freelancer somente quando o projeto estiver concluído.',
   },
 ]
 

@@ -9,15 +9,7 @@ const testimonials = [
   },
   {
     name: 'Lincoln Tamashiro',
-    content: '" Dentre as plataformas de freelas, a 99 foi a que tem a maior base de respostas entre propostas de freelas. O nível da base de dados de profissionais disponíveis é muito acima do esperado. Sobre a plataforma, é necessário apenas alguns ajustes de respostas nas informações. Mas a plataforma é limpa e objetiva. Parabéns ao MeuFreelas. "',
-  },
-  {
-    name: 'Mariana Santos',
-    content: '" Plataforma excelente! Consegui meus melhores clientes por aqui. O sistema de pagamento seguro dá total confiança para trabalhar. Recomendo para todos os freelancers! "',
-  },
-  {
-    name: 'Carlos Mendes',
-    content: '" Encontrei excelentes freelancers para minha empresa. O processo é simples e rápido. Recomendo muito para quem precisa de profissionais qualificados! "',
+    content: '" Dentre as plataformas de freelas, a 99 foi a que tem a maior base de respostas entre propostas de freelas. O nível da base de dados de profissionais disponíveis é muito acima do esperado. Sobre a plataforma, é necessário apenas alguns ajustes de respostas nas informações. Mas a plataforma é limpa e objetiva. Parabéns ao 99Freelas. "',
   },
 ]
 

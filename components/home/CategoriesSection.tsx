@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
 const categories = [
-  { title: 'Desenhar o seu', bold: 'website', slug: 'design-web', color: '#00aeef', bg: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&q=70' },
-  { title: 'Escrever o seu', bold: 'conteúdo', slug: 'redacao-conteudo', color: '#c084fc', bg: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=70' },
-  { title: 'Desenvolver o seu', bold: 'código', slug: 'desenvolvimento', color: '#f87171', bg: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&q=70' },
-  { title: 'Melhorar o seu', bold: 'SEO', slug: 'seo-marketing', color: '#fbbf24', bg: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=70' },
-  { title: 'Desenhar o seu', bold: 'logotipo', slug: 'design-logo', color: '#34d399', bg: 'https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=400&q=70' },
-  { title: 'Criar o seu', bold: 'vídeo', slug: 'video-animacao', color: '#22d3ee', bg: 'https://images.unsplash.com/photo-1536240478700-b869ad10e2b7?w=400&q=70' },
+  { title: 'Desenhar o seu', bold: 'website', slug: 'design-web', color: '#4A90E2', bg: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&q=70' },
+  { title: 'Escrever o seu', bold: 'conteúdo', slug: 'redacao-conteudo', color: '#D291BC', bg: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=70' },
+  { title: 'Desenvolver o seu', bold: 'código', slug: 'desenvolvimento', color: '#E57373', bg: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&q=70' },
+  { title: 'Melhorar o seu', bold: 'SEO', slug: 'seo-marketing', color: '#F9A825', bg: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=70' },
+  { title: 'Desenhar o seu', bold: 'logotipo', slug: 'design-logo', color: '#66BB6A', bg: 'https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=400&q=70' },
+  { title: 'Criar o seu', bold: 'vídeo', slug: 'video-animacao', color: '#4DD0E1', bg: 'https://images.unsplash.com/photo-1536240478700-b869ad10e2b7?w=400&q=70' },
 ]
 
 export default function CategoriesSection() {
