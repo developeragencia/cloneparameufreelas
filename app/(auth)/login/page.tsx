@@ -47,46 +47,9 @@ function LoginPageInner() {
   }
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left panel - decorative */}
-      <div
-        className="hidden lg:flex lg:w-1/2 flex-col justify-between p-12 text-white relative overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, #2d3e50 0%, #00aeef 100%)',
-        }}
-      >
-        <div className="relative z-10">
-          <Logo size="xl" variant="light" />
-        </div>
-        <div className="relative z-10">
-          <h2 className="text-4xl font-bold mb-4 leading-tight">
-            Encontre os melhores freelancers do Brasil
-          </h2>
-          <p className="text-blue-100 text-lg">
-            Conectamos empresas e profissionais talentosos para projetos de sucesso.
-          </p>
-          <div className="mt-8 grid grid-cols-3 gap-4">
-            {[
-              { v: '136.912', l: 'Projetos' },
-              { v: '3.4M+', l: 'Freelancers' },
-              { v: 'R$26M+', l: 'Pagos' },
-            ].map((s) => (
-              <div key={s.l} className="bg-white bg-opacity-10 rounded-xl p-4 text-center backdrop-blur-sm">
-                <div className="text-2xl font-bold">{s.v}</div>
-                <div className="text-sm text-blue-100">{s.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full translate-x-20 translate-y-20" />
-        <div className="absolute top-20 right-10 w-32 h-32 bg-white opacity-5 rounded-full" />
-      </div>
-
-      {/* Right panel - form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center py-12 px-6 bg-gray-50">
-        <div className="w-full max-w-md">
-          {/* Mobile logo */}
-          <div className="lg:hidden text-center mb-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-6">
+      <div className="w-full max-w-md">
+          <div className="text-center mb-8">
             <Logo size="xl" variant="dark" />
           </div>
 
@@ -205,7 +168,6 @@ function LoginPageInner() {
           <p className="text-center mt-4 text-xs text-gray-400 bg-gray-100 rounded-lg py-2 px-4">
             <strong>Demo:</strong> cliente@demo.com.br / Cliente@123
           </p>
-        </div>
       </div>
     </div>
   )

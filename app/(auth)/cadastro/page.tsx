@@ -56,43 +56,9 @@ function CadastroPageInner() {
   const estados = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left panel - decorative */}
-      <div
-        className="hidden lg:flex lg:w-2/5 flex-col justify-between p-12 text-white relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #2d3e50 0%, #00aeef 100%)' }}
-      >
-        <div className="relative z-10">
-          <Logo size="xl" variant="light" />
-        </div>
-        <div className="relative z-10 space-y-6">
-          <h2 className="text-3xl font-bold leading-tight">
-            Faça parte da maior plataforma de freelancers do Brasil
-          </h2>
-          <div className="space-y-4">
-            {[
-              { icon: '🚀', title: 'Comece em minutos', desc: 'Cadastro rápido e gratuito' },
-              { icon: '🔒', title: 'Pagamento seguro', desc: 'Seu dinheiro protegido' },
-              { icon: '⭐', title: 'Profissionais verificados', desc: '+3.4 milhões de freelancers' },
-            ].map((f) => (
-              <div key={f.title} className="flex items-start gap-3 bg-white bg-opacity-10 rounded-xl p-4 backdrop-blur-sm">
-                <span className="text-2xl">{f.icon}</span>
-                <div>
-                  <p className="font-semibold">{f.title}</p>
-                  <p className="text-sm text-blue-100">{f.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full translate-x-20 translate-y-20" />
-      </div>
-
-      {/* Right panel - form */}
-      <div className="w-full lg:w-3/5 flex items-center justify-center py-8 px-6 bg-gray-50 overflow-y-auto">
-        <div className="w-full max-w-lg">
-          {/* Mobile logo */}
-          <div className="lg:hidden text-center mb-6">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-8 px-6">
+      <div className="w-full max-w-lg">
+          <div className="text-center mb-6">
             <Logo size="xl" variant="dark" />
           </div>
 
@@ -285,7 +251,6 @@ function CadastroPageInner() {
             e{' '}
             <Link href="/privacidade" className="text-[#00aeef] hover:underline">Política de Privacidade</Link>
           </p>
-        </div>
       </div>
     </div>
   )
