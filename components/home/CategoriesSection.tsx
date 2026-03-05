@@ -13,7 +13,7 @@ export default function CategoriesSection() {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">
           Encontre freelancers talentosos para...
         </h2>
 
@@ -25,15 +25,15 @@ export default function CategoriesSection() {
               className="relative overflow-hidden rounded-lg group block shadow-md hover:shadow-xl transition-shadow"
             >
               <div
-                className="h-52 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                className="h-40 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style={{ backgroundImage: `url(${cat.bg})` }}
               />
               <div
                 className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4"
-                style={{ backgroundColor: `${cat.color}dd` }}
+                style={{ backgroundColor: `${cat.color}cc` }}
               >
-                <p className="text-lg font-normal mb-1">{cat.title}</p>
-                <p className="text-3xl font-bold">{cat.bold}</p>
+                <p className="text-sm font-normal mb-1">{cat.title}</p>
+                <p className="text-xl font-bold">{cat.bold}</p>
               </div>
             </Link>
           ))}
