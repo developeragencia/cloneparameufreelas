@@ -1,0 +1,65 @@
+# ===========================================
+# meufreelas - VARIÁVEIS DE AMBIENTE PRODUÇÃO
+# ===========================================
+# INSTRUÇÕES:
+# 1. Copie este conteúdo para o arquivo .env no servidor Hostinger
+# 2. Preencha os valores com PREENCHER com seus dados reais
+# 3. Nunca compartilhe este arquivo publicamente
+# ===========================================
+
+# ----- BANCO DE DADOS (Hostinger MySQL) -----
+# Formato: mysql://USUARIO:SENHA@HOST:3306/NOME_BANCO
+# Encontre no painel Hostinger > Banco de Dados > Detalhes
+DATABASE_URL="mysql://PREENCHER_USUARIO:PREENCHER_SENHA@PREENCHER_HOST:3306/PREENCHER_BANCO"
+
+# ----- NEXTAUTH -----
+NEXTAUTH_URL="https://meufreelas.com.br"
+NEXTAUTH_SECRET="j3Hs2hARSKGwM2qEn36JRjV4zYhbCBe-NW03ISX3BD6hFkkEj97lQg00cuHocoe1H6El-zFFhsE5yT2a16IHgg"
+
+# ----- GOOGLE OAUTH -----
+# Obter em: https://console.cloud.google.com
+# APIs & Services > Credentials > Create OAuth 2.0 Client ID
+# Authorized redirect URI: https://meufreelas.com.br/api/auth/callback/google
+GOOGLE_CLIENT_ID="PREENCHER_GOOGLE_CLIENT_ID"
+GOOGLE_CLIENT_SECRET="PREENCHER_GOOGLE_CLIENT_SECRET"
+
+# ----- GITHUB OAUTH -----
+# Obter em: https://github.com/settings/developers > OAuth Apps > New OAuth App
+# Homepage URL: https://meufreelas.com.br
+# Authorization callback URL: https://meufreelas.com.br/api/auth/callback/github
+GITHUB_CLIENT_ID="PREENCHER_GITHUB_CLIENT_ID"
+GITHUB_CLIENT_SECRET="PREENCHER_GITHUB_CLIENT_SECRET"
+
+# ----- CLOUDINARY (upload de imagens) -----
+# Obter em: https://cloudinary.com > Dashboard
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="PREENCHER_CLOUD_NAME"
+CLOUDINARY_API_KEY="PREENCHER_API_KEY"
+CLOUDINARY_API_SECRET="PREENCHER_API_SECRET"
+CLOUDINARY_UPLOAD_PRESET="freelas-uploads"
+
+# ----- EMAIL (SMTP Hostinger) -----
+# Use o email criado no painel Hostinger > Email
+SMTP_HOST="smtp.hostinger.com"
+SMTP_PORT="465"
+SMTP_SECURE="true"
+SMTP_USER="noreply@meufreelas.com.br"
+SMTP_PASS="PREENCHER_SENHA_EMAIL"
+EMAIL_FROM="MeuFreelas <noreply@meufreelas.com.br>"
+
+# ----- STRIPE (pagamentos) -----
+# Obter em: https://dashboard.stripe.com > Developers > API keys
+STRIPE_PUBLIC_KEY="pk_live_PREENCHER"
+STRIPE_SECRET_KEY="sk_live_PREENCHER"
+STRIPE_WEBHOOK_SECRET="whsec_PREENCHER"
+
+# ----- APP -----
+NEXT_PUBLIC_APP_URL="https://meufreelas.com.br"
+NEXT_PUBLIC_APP_NAME="MeuFreelas"
+PLATFORM_FEE_PERCENT="10"
+MIN_PROJECT_VALUE="50"
+
+# ----- JWT SECRET -----
+JWT_SECRET="z104eMNlGFZAbTuRBK_D0bdehT_OuolnjYcJu2NhSriyGrmi31bs22LeDJ9R_7Z1kUurt3lpINx-BNUBsHHrhA"
+
+# ----- ADMIN -----
+ADMIN_EMAIL="admin@meufreelas.com.br"
