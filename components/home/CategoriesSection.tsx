@@ -1,50 +1,87 @@
 import Link from 'next/link'
 
 const categories = [
-  { title: 'Desenhar o seu', bold: 'website', slug: 'design-web', color: '#5DADE2', bg: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&q=70' },
-  { title: 'Escrever o seu', bold: 'conteúdo', slug: 'redacao-conteudo', color: '#C39BD3', bg: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=70' },
-  { title: 'Desenvolver o seu', bold: 'código', slug: 'desenvolvimento', color: '#EC7063', bg: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&q=70' },
-  { title: 'Melhorar o seu', bold: 'SEO', slug: 'seo-marketing', color: '#F8C471', bg: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=70' },
-  { title: 'Desenhar o seu', bold: 'logotipo', slug: 'design-logo', color: '#58D68D', bg: 'https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=400&q=70' },
-  { title: 'Criar o seu', bold: 'vídeo', slug: 'video-animacao', color: '#5DADE2', bg: 'https://images.unsplash.com/photo-1536240478700-b869ad10e2b7?w=400&q=70' },
+  {
+    icon: '💻',
+    title: 'Desenvolvimento',
+    sub: 'Web, Mobile, APIs',
+    slug: 'desenvolvimento',
+    gradient: 'from-indigo-500 to-purple-600',
+    light: 'bg-indigo-50 text-indigo-600',
+  },
+  {
+    icon: '🎨',
+    title: 'Design',
+    sub: 'UI/UX, Logos, Branding',
+    slug: 'design-web',
+    gradient: 'from-pink-500 to-rose-500',
+    light: 'bg-pink-50 text-pink-600',
+  },
+  {
+    icon: '✍️',
+    title: 'Conteúdo',
+    sub: 'Textos, Blog, Copywriting',
+    slug: 'redacao-conteudo',
+    gradient: 'from-emerald-500 to-teal-500',
+    light: 'bg-emerald-50 text-emerald-600',
+  },
+  {
+    icon: '📈',
+    title: 'Marketing',
+    sub: 'SEO, Ads, Redes Sociais',
+    slug: 'seo-marketing',
+    gradient: 'from-orange-500 to-amber-500',
+    light: 'bg-orange-50 text-orange-600',
+  },
+  {
+    icon: '🎥',
+    title: 'Vídeo & Áudio',
+    sub: 'Edição, Animação, Podcast',
+    slug: 'video-animacao',
+    gradient: 'from-cyan-500 to-blue-500',
+    light: 'bg-cyan-50 text-cyan-600',
+  },
+  {
+    icon: '📊',
+    title: 'Negócios',
+    sub: 'Finanças, Consultoria, RH',
+    slug: 'negocios',
+    gradient: 'from-violet-500 to-indigo-500',
+    light: 'bg-violet-50 text-violet-600',
+  },
 ]
 
 export default function CategoriesSection() {
   return (
-    <section className="py-10 md:py-16 bg-gray-50">
+    <section className="py-12 md:py-16 bg-[#F8FAFC]">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6">
-          Encontre freelancers talentosos para...
-        </h2>
+        <div className="text-center mb-8">
+          <h2 className="section-title">Explore por categoria</h2>
+          <p className="section-subtitle">Encontre o especialista certo para cada tipo de projeto</p>
+        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
           {categories.map((cat) => (
             <Link
               key={cat.slug}
               href={`/freelancers?categoria=${cat.slug}`}
-              className="relative overflow-hidden rounded-lg group block shadow-md hover:shadow-xl transition-shadow"
+              className="group bg-white rounded-2xl p-4 md:p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
-              <div
-                className="h-28 sm:h-36 md:h-40 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style={{ backgroundImage: `url(${cat.bg})` }}
-              />
-              <div
-                className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-2"
-                style={{ backgroundColor: `${cat.color}cc` }}
-              >
-                <p className="text-xs sm:text-sm font-normal mb-0.5">{cat.title}</p>
-                <p className="text-sm sm:text-lg font-bold">{cat.bold}</p>
+              <div className={`inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${cat.gradient} text-2xl md:text-3xl mb-3 shadow-lg`}>
+                {cat.icon}
               </div>
+              <h3 className="font-bold text-gray-900 text-sm md:text-base mb-0.5 group-hover:text-indigo-600 transition-colors">{cat.title}</h3>
+              <p className="text-xs text-gray-500 leading-snug hidden sm:block">{cat.sub}</p>
             </Link>
           ))}
         </div>
 
-        <div className="text-center mt-6 md:mt-10">
+        <div className="text-center mt-8">
           <Link
             href="/categorias"
-            className="inline-block border-2 border-gray-400 text-gray-700 hover:border-[#00aeef] hover:text-[#00aeef] px-6 py-2.5 rounded transition-colors font-semibold text-sm"
+            className="inline-flex items-center gap-2 border-2 border-indigo-200 text-indigo-600 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-6 py-2.5 rounded-xl transition-all font-semibold text-sm"
           >
-            Ver todas categorias
+            Ver todas as categorias →
           </Link>
         </div>
       </div>

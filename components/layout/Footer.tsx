@@ -1,101 +1,118 @@
 import Link from 'next/link'
-import { Facebook, Twitter, Linkedin } from 'lucide-react'
 import Logo from '@/components/ui/Logo'
+
+const footerLinks = {
+  plataforma: [
+    { label: 'Como Funciona', href: '/como-funciona' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Central de Ajuda', href: '/ajuda' },
+    { label: 'Termos de Uso', href: '/termos' },
+    { label: 'Privacidade', href: '/privacidade' },
+  ],
+  empresas: [
+    { label: 'Publicar Projeto', href: '/publicar-projeto' },
+    { label: 'Encontrar Freelancers', href: '/freelancers' },
+    { label: 'Área da Empresa', href: '/dashboard/cliente' },
+    { label: 'Cadastro Empresa', href: '/cadastro?tipo=cliente' },
+  ],
+  freelancers: [
+    { label: 'Encontrar Projetos', href: '/projetos' },
+    { label: 'Área do Freelancer', href: '/dashboard/freelancer' },
+    { label: 'Cadastro Freelancer', href: '/cadastro?tipo=freelancer' },
+    { label: 'Categorias', href: '/categorias' },
+  ],
+}
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 border-t mt-auto">
-      {/* Newsletter bar */}
-      <div className="bg-[#333] text-white py-3 text-center text-sm">
-        Você é um freelancer? Junte-se a nós!{' '}
-        <Link href="/cadastro?tipo=freelancer" className="text-[#00aeef] font-semibold hover:underline">
-          Cadastre-se.
-        </Link>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-          {/* Brand */}
-          <div className="md:col-span-1">
-            <Logo size="lg" variant="dark" />
-            <p className="text-sm text-gray-600 mb-4">
-              Você é um freelancer? Nós conectamos milhares de profissionais a empresas todos os dias.
+    <footer style={{ background: 'linear-gradient(180deg, #0D1117 0%, #0A0D16 100%)' }}>
+      {/* Main footer */}
+      <div className="max-w-6xl mx-auto px-4 pt-14 pb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          {/* Brand column */}
+          <div className="col-span-2 md:col-span-1">
+            <Logo size="lg" variant="light" />
+            <p className="text-gray-400 text-sm mt-4 mb-5 leading-relaxed max-w-xs">
+              A maior plataforma de freelancers do Brasil. Conectamos talentos a projetos de sucesso.
             </p>
             <Link
-              href="/cadastro?tipo=freelancer"
-              className="inline-block bg-[#00aeef] text-white px-4 py-2 rounded text-sm font-semibold hover:bg-[#0099d4] transition-colors"
+              href="/cadastro"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:-translate-y-0.5 transition-all shadow-lg"
             >
-              Cadastre-se
+              Comece Grátis →
             </Link>
+
+            {/* Social links */}
+            <div className="flex items-center gap-3 mt-6">
+              {[
+                { href: 'https://instagram.com', label: 'IG', color: 'hover:bg-pink-600' },
+                { href: 'https://linkedin.com', label: 'in', color: 'hover:bg-blue-700' },
+                { href: 'https://twitter.com', label: 'X', color: 'hover:bg-gray-600' },
+                { href: 'https://facebook.com', label: 'f', color: 'hover:bg-blue-600' },
+              ].map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
+                  className={`w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white text-xs font-bold transition-all ${s.color}`}>
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* MeuFreelas */}
+          {/* Links columns */}
           <div>
-            <h4 className="font-bold text-gray-800 mb-4">MeuFreelas</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/como-funciona" className="text-[#00aeef] hover:underline">Como funciona</Link></li>
-              <li><Link href="/blog" className="text-[#00aeef] hover:underline">Blog</Link></li>
-              <li><Link href="/ajuda" className="text-[#00aeef] hover:underline">Central de ajuda</Link></li>
-              <li><Link href="/termos" className="text-[#00aeef] hover:underline">Termos de uso</Link></li>
-              <li><Link href="/privacidade" className="text-[#00aeef] hover:underline">Política de privacidade</Link></li>
+            <h4 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">Plataforma</h4>
+            <ul className="space-y-2.5">
+              {footerLinks.plataforma.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-gray-400 hover:text-indigo-400 text-sm transition-colors">{l.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Para Empresas */}
           <div>
-            <h4 className="font-bold text-gray-800 mb-4">Para Empresas</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/dashboard/cliente" className="text-[#00aeef] hover:underline">Área de empresa</Link></li>
-              <li><Link href="/cadastro?tipo=cliente" className="text-[#00aeef] hover:underline">Cadastro de empresa</Link></li>
-              <li><Link href="/como-funciona#empresa" className="text-[#00aeef] hover:underline">Como funciona</Link></li>
-              <li><Link href="/publicar-projeto" className="text-[#00aeef] hover:underline">Publique seu projeto</Link></li>
-              <li><Link href="/freelancers" className="text-[#00aeef] hover:underline">Lista de freelancers</Link></li>
+            <h4 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">Empresas</h4>
+            <ul className="space-y-2.5">
+              {footerLinks.empresas.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-gray-400 hover:text-indigo-400 text-sm transition-colors">{l.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Para Freelancers */}
           <div>
-            <h4 className="font-bold text-gray-800 mb-4">Para Freelancers</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/dashboard/freelancer" className="text-[#00aeef] hover:underline">Área de freelancer</Link></li>
-              <li><Link href="/cadastro?tipo=freelancer" className="text-[#00aeef] hover:underline">Cadastro de freelancer</Link></li>
-              <li><Link href="/como-funciona#freelancer" className="text-[#00aeef] hover:underline">Como funciona</Link></li>
-              <li><Link href="/projetos" className="text-[#00aeef] hover:underline">Lista de projetos</Link></li>
+            <h4 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">Freelancers</h4>
+            <ul className="space-y-2.5">
+              {footerLinks.freelancers.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-gray-400 hover:text-indigo-400 text-sm transition-colors">{l.label}</Link>
+                </li>
+              ))}
             </ul>
-          </div>
 
-          {/* Siga-nos */}
-          <div>
-            <h4 className="font-bold text-gray-800 mb-4">Siga-nos</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-[#00aeef] hover:underline flex items-center gap-2">
-                  <Facebook className="w-4 h-4" /> Facebook
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-[#00aeef] hover:underline flex items-center gap-2">
-                  <Twitter className="w-4 h-4" /> Twitter
-                </a>
-              </li>
-              <li>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-[#00aeef] hover:underline flex items-center gap-2">
-                  <Linkedin className="w-4 h-4" /> Linkedin
-                </a>
-              </li>
-              <li>
-                <a href="https://plus.google.com" target="_blank" rel="noreferrer" className="text-[#00aeef] hover:underline">
-                  Google +
-                </a>
-              </li>
-            </ul>
+            {/* Payment badges */}
+            <div className="mt-6">
+              <p className="text-gray-500 text-xs mb-2 uppercase tracking-wide">Pagamento seguro</p>
+              <div className="flex gap-2">
+                {['Visa', 'PIX', 'MP'].map((p) => (
+                  <span key={p} className="bg-white/5 border border-white/10 text-gray-400 text-xs px-2 py-1 rounded-lg font-semibold">{p}</span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t py-4 text-center text-sm text-gray-500">
-        <p>© {new Date().getFullYear()} MeuFreelas. Todos os direitos reservados.</p>
+      <div className="border-t border-white/5 py-5">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-gray-500 text-xs">© {new Date().getFullYear()} MeuFreelas. Todos os direitos reservados.</p>
+          <div className="flex items-center gap-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-gray-500 text-xs">Todos os sistemas operacionais</span>
+          </div>
+        </div>
       </div>
     </footer>
   )
